@@ -1,5 +1,4 @@
 /**
-<<<<<<< HEAD
  * Consistent error messages from Flask/axios (message, detail, status, network).
  */
 export function getApiErrorMessage(err, fallback = 'Something went wrong') {
@@ -20,20 +19,5 @@ export function getApiErrorMessage(err, fallback = 'Something went wrong') {
   }
 
   if (!err.response && err.message) return err.message
-=======
- * Normalize Axios / API errors for user-facing messages.
- * Backend often returns { message: string } or { message, detail }.
- */
-export function getApiErrorMessage(error, fallback = 'Something went wrong') {
-  if (!error) return fallback
-  const data = error.response?.data
-  if (data && typeof data.message === 'string' && data.message.trim()) {
-    if (typeof data.detail === 'string' && data.detail.trim()) {
-      return `${data.message} (${data.detail})`
-    }
-    return data.message
-  }
-  if (error.message) return error.message
->>>>>>> origin/master
   return fallback
 }
