@@ -41,10 +41,7 @@ def create_app(config_class=Config):
     from app.api.submissions import submissions_bp
     from app.api.tasks import tasks_bp
     from app.api.mentor import mentor_bp
-<<<<<<< HEAD
     from app.api.portfolio import portfolio_bp
-=======
->>>>>>> origin/master
     from app.services.mentor_service import ensure_mentor_indexes
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -53,10 +50,7 @@ def create_app(config_class=Config):
     app.register_blueprint(submissions_bp, url_prefix='/api/submissions')
     app.register_blueprint(tasks_bp, url_prefix='/api/tasks')
     app.register_blueprint(mentor_bp, url_prefix='/api/mentor')
-<<<<<<< HEAD
     app.register_blueprint(portfolio_bp, url_prefix='/api/portfolio')
-=======
->>>>>>> origin/master
 
     with app.app_context():
         ensure_mentor_indexes()

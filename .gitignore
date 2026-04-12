@@ -1,11 +1,37 @@
+# ======================
 # Python
+# ======================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# Env
+# ======================
+# Environment variables
+# ======================
 .env
 backend/.env
 frontend/.env
 
-# Node
+# ======================
+# Node / React
+# ======================
 frontend/node_modules/
+node_modules/
+
+# ======================
+# Build / Dist
+# ======================
+frontend/dist/
+dist/
+
+# ======================
+# Logs
+# ======================
+*.log
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db

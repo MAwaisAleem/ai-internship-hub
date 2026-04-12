@@ -13,10 +13,7 @@ import TaskSubmitPage from "./pages/TaskSubmitPage";
 import MentorDashboard from "./pages/MentorDashboard";
 import MentorStudentDetail from "./pages/MentorStudentDetail";
 import MentorReviewPage from "./pages/MentorReviewPage";
-<<<<<<< HEAD
 import PortfolioPage from "./pages/PortfolioPage";
-=======
->>>>>>> origin/master
 
 function App() {
   return (
@@ -66,7 +63,6 @@ function App() {
           }
         />
         <Route
-<<<<<<< HEAD
           path="/portfolio"
           element={
             <ProtectedRoute roles={["Student"]}>
@@ -75,8 +71,6 @@ function App() {
           }
         />
         <Route
-=======
->>>>>>> origin/master
           path="/mentor/submissions/:submissionId"
           element={
             <ProtectedRoute roles={["Mentor"]}>
