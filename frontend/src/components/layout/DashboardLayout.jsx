@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 
 const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
+  { path: '/mentor', label: 'Mentor', icon: '◆', roles: ['Mentor'] },
   { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
   { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
   { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
@@ -47,10 +48,11 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
           {visibleNavItems.map((item) => {
             const isActive =
               location.pathname === item.path ||
-              (item.path === '/tasks' && location.pathname.startsWith('/tasks'))
+              (item.path === '/tasks' && location.pathname.startsWith('/tasks')) ||
+              (item.path === '/mentor' && location.pathname.startsWith('/mentor'))
             return (
               <Link
-                key={item.path}
+                key={`${item.path}-${item.label}`}
                 to={item.path}
                 className={`flex items-center gap-2 rounded-card px-3 py-2 text-sm font-medium no-underline transition-colors duration-150 ${
                   isActive
@@ -125,6 +127,19 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
                 </Link>
                 <Link to="/result" className="text-sm text-mint-active no-underline hover:underline">
                   View Last Result
+                </Link>
+              </div>
+            )}
+            {user?.role === 'Mentor' && (
+              <div className="flex flex-col gap-2">
+                <Link to="/mentor" className="text-sm text-mint-active no-underline hover:underline">
+                  Mentor dashboard
+                </Link>
+                <Link
+                  to="/mentor?tab=pending"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
+                  Pending reviews
                 </Link>
               </div>
             )}

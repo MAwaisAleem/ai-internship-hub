@@ -82,4 +82,19 @@ export const submissionsApi = {
     client.get(`/submissions/assignment/${assignmentId}/latest`),
 };
 
+/** FR5: mentor roster, reviews, feedback (Mentor JWT) */
+export const mentorApi = {
+  getStudents: () => client.get("/mentor/students"),
+  getStudentProgress: (studentId) =>
+    client.get(`/mentor/students/${studentId}/progress`),
+  getPendingSubmissions: (limit = 50) =>
+    client.get("/mentor/submissions/pending", { params: { limit } }),
+  getSubmission: (submissionId) =>
+    client.get(`/mentor/submissions/${submissionId}`),
+  submitFeedback: (submissionId, feedback) =>
+    client.post(`/mentor/submissions/${submissionId}/feedback`, { feedback }),
+  getFeedbackHistory: (params) =>
+    client.get("/mentor/reviews/history", { params }),
+};
+
 export default client;

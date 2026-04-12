@@ -10,6 +10,9 @@ import Assessment from "./pages/Assessment";
 import Result from "./pages/Result";
 import TasksPage from "./pages/TasksPage";
 import TaskSubmitPage from "./pages/TaskSubmitPage";
+import MentorDashboard from "./pages/MentorDashboard";
+import MentorStudentDetail from "./pages/MentorStudentDetail";
+import MentorReviewPage from "./pages/MentorReviewPage";
 
 function App() {
   return (
@@ -55,6 +58,30 @@ function App() {
           element={
             <ProtectedRoute roles={["Student"]}>
               <TasksPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mentor/submissions/:submissionId"
+          element={
+            <ProtectedRoute roles={["Mentor"]}>
+              <MentorReviewPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mentor/students/:studentId"
+          element={
+            <ProtectedRoute roles={["Mentor"]}>
+              <MentorStudentDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mentor"
+          element={
+            <ProtectedRoute roles={["Mentor"]}>
+              <MentorDashboard />
             </ProtectedRoute>
           }
         />
