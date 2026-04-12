@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border m-0 p-0;
+  }
+  body {
+    @apply font-sans bg-primary text-content antialiased;
+    line-height: 1.6;
+  }
+  #root {
+    @apply min-h-screen;
+  }
+  a {
+    @apply text-mint-active no-underline;
+  }
+  a:hover {
+    @apply underline;
+  }
+  button {
+    @apply cursor-pointer font-sans;
+  }
+  input,
+  select,
+  textarea {
+    @apply font-sans;
+  }
+}
