@@ -8,11 +8,6 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Assessment from "./pages/Assessment";
 import Result from "./pages/Result";
-import TasksPage from "./pages/TasksPage";
-import TaskSubmitPage from "./pages/TaskSubmitPage";
-import MentorDashboard from "./pages/MentorDashboard";
-import MentorStudentDetail from "./pages/MentorStudentDetail";
-import MentorReviewPage from "./pages/MentorReviewPage";
 import PortfolioPage from "./pages/PortfolioPage";
 
 function App() {
@@ -47,50 +42,10 @@ function App() {
           }
         />
         <Route
-          path="/tasks/:assignmentId/submit"
-          element={
-            <ProtectedRoute roles={["Student"]}>
-              <TaskSubmitPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/tasks"
-          element={
-            <ProtectedRoute roles={["Student"]}>
-              <TasksPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path="/portfolio"
           element={
             <ProtectedRoute roles={["Student"]}>
               <PortfolioPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/mentor/submissions/:submissionId"
-          element={
-            <ProtectedRoute roles={["Mentor"]}>
-              <MentorReviewPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/mentor/students/:studentId"
-          element={
-            <ProtectedRoute roles={["Mentor"]}>
-              <MentorStudentDetail />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/mentor"
-          element={
-            <ProtectedRoute roles={["Mentor"]}>
-              <MentorDashboard />
             </ProtectedRoute>
           }
         />

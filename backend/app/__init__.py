@@ -37,22 +37,10 @@ def create_app(config_class=Config):
     # Register blueprints
     from app.api.auth import auth_bp
     from app.api.assessment import assessment_bp
-    from app.api.assignments import assignments_bp
-    from app.api.submissions import submissions_bp
-    from app.api.tasks import tasks_bp
-    from app.api.mentor import mentor_bp
     from app.api.portfolio import portfolio_bp
-    from app.services.mentor_service import ensure_mentor_indexes
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(assessment_bp, url_prefix='/api/assessment')
-    app.register_blueprint(assignments_bp, url_prefix='/api/assignments')
-    app.register_blueprint(submissions_bp, url_prefix='/api/submissions')
-    app.register_blueprint(tasks_bp, url_prefix='/api/tasks')
-    app.register_blueprint(mentor_bp, url_prefix='/api/mentor')
     app.register_blueprint(portfolio_bp, url_prefix='/api/portfolio')
-
-    with app.app_context():
-        ensure_mentor_indexes()
 
     return app

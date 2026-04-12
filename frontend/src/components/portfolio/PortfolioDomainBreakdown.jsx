@@ -1,7 +1,7 @@
-import Card from '../ui/Card'
+import Card from "../ui/Card";
 
 export default function PortfolioDomainBreakdown({ domains }) {
-  if (!domains || domains.length === 0) return null
+  if (!domains || domains.length === 0) return null;
 
   return (
     <Card>
@@ -20,14 +20,12 @@ export default function PortfolioDomainBreakdown({ domains }) {
               <tr key={row.domain} className="border-b border-borderLight">
                 <td className="p-2 text-content">{row.domain}</td>
                 <td className="p-2 text-contentSecondary">{row.completed_count}</td>
-                <td className="p-2 text-contentSecondary">
-                  {row.avg_score != null ? `${row.avg_score}` : '—'}
-                </td>
+                <td className="p-2 text-contentSecondary">{row.avg_score != null ? `${row.avg_score}` : "—"}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
     </Card>
-  )
+  );
 }

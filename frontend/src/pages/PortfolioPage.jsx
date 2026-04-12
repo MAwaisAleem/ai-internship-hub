@@ -1,26 +1,26 @@
-import { usePortfolio } from '../hooks/usePortfolio'
-import DashboardLayout from '../components/layout/DashboardLayout'
-import Card from '../components/ui/Card'
-import Button from '../components/ui/Button'
-import PortfolioProfileHero from '../components/portfolio/PortfolioProfileHero'
-import PortfolioSkillTags from '../components/portfolio/PortfolioSkillTags'
-import PortfolioDomainBreakdown from '../components/portfolio/PortfolioDomainBreakdown'
-import PortfolioHighlightsList from '../components/portfolio/PortfolioHighlightsList'
-import PortfolioAssessmentCard from '../components/portfolio/PortfolioAssessmentCard'
-import PortfolioProjectCard from '../components/portfolio/PortfolioProjectCard'
-import PortfolioEmptyState from '../components/portfolio/PortfolioEmptyState'
+import { usePortfolio } from "../hooks/usePortfolio";
+import DashboardLayout from "../components/layout/DashboardLayout";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
+import PortfolioProfileHero from "../components/portfolio/PortfolioProfileHero";
+import PortfolioSkillTags from "../components/portfolio/PortfolioSkillTags";
+import PortfolioDomainBreakdown from "../components/portfolio/PortfolioDomainBreakdown";
+import PortfolioHighlightsList from "../components/portfolio/PortfolioHighlightsList";
+import PortfolioAssessmentCard from "../components/portfolio/PortfolioAssessmentCard";
+import PortfolioProjectCard from "../components/portfolio/PortfolioProjectCard";
+import PortfolioEmptyState from "../components/portfolio/PortfolioEmptyState";
 
 export default function PortfolioPage() {
-  const { data, loading, error, reload } = usePortfolio()
+  const { data, loading, error, reload } = usePortfolio();
 
   if (loading) {
     return (
-      <DashboardLayout title="Portfolio" subtitle="Preparing your freelancing profile…" showSearch={false}>
+      <DashboardLayout title="Portfolio" subtitle="Preparing your profile…" showSearch={false}>
         <Card>
           <p className="text-center py-8 text-contentSecondary m-0">Loading your portfolio…</p>
         </Card>
       </DashboardLayout>
-    )
+    );
   }
 
   if (error) {
@@ -33,18 +33,18 @@ export default function PortfolioPage() {
           </Button>
         </Card>
       </DashboardLayout>
-    )
+    );
   }
 
-  const profile = data?.profile
-  const readiness = data?.readiness || {}
-  const projects = data?.projects || []
-  const hasProjects = projects.length > 0
+  const profile = data?.profile;
+  const readiness = data?.readiness || {};
+  const projects = data?.projects || [];
+  const hasProjects = projects.length > 0;
 
   return (
     <DashboardLayout
       title="Portfolio"
-      subtitle="Showcase evaluated work, skills, and mentor feedback for freelancing readiness."
+      subtitle="Evaluated work, skills, and mentor feedback for freelancing readiness."
       showSearch={false}
     >
       <PortfolioProfileHero profile={profile} summaryLine={readiness.summary_line} />
@@ -73,9 +73,9 @@ export default function PortfolioPage() {
       {data?.meta?.generated_at && (
         <p className="text-xs text-contentMuted m-0 text-center">
           Generated {data.meta.generated_at}
-          {data.meta.version != null ? ` · v${data.meta.version}` : ''}
+          {data.meta.version != null ? ` · v${data.meta.version}` : ""}
         </p>
       )}
     </DashboardLayout>
-  )
+  );
 }

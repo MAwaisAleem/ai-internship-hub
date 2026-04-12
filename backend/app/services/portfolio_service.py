@@ -1,4 +1,4 @@
-"""FR6: Build student portfolio JSON from existing users, tasks, assignments, submissions, mentor_reviews."""
+"""FR6: Build student portfolio JSON from users, tasks, assignments, submissions, mentor_reviews."""
 from __future__ import annotations
 
 from collections import defaultdict
@@ -47,7 +47,6 @@ def _task_public(task: dict | None) -> dict[str, Any] | None:
 
 
 def _numeric_score(evaluation: dict | None) -> float | None:
-    """Normalize overall_score; design tasks may use None with breakdown only."""
     if not evaluation:
         return None
     raw = evaluation.get('overall_score')
@@ -55,16 +54,12 @@ def _numeric_score(evaluation: dict | None) -> float | None:
         return float(raw)
     sb = evaluation.get('score_breakdown')
     if isinstance(sb, dict):
-        if 'automated_validation' in sb and sb['automated_validation'] is not None:
-            try:
-                return float(sb['automated_validation'])
-            except (TypeError, ValueError):
-                pass
-        if 'correctness' in sb and sb['correctness'] is not None:
-            try:
-                return float(sb['correctness'])
-            except (TypeError, ValueError):
-                pass
+        for key in ('automated_validation', 'correctness'):
+            if key in sb and sb[key] is not None:
+                try:
+                    return float(sb[key])
+                except (TypeError, ValueError):
+                    pass
     return None
 
 
@@ -143,6 +138,7 @@ def _mentor_feedback_block(review: dict | None) -> dict[str, Any] | None:
 def build_portfolio(user_id: str) -> dict[str, Any]:
     """
     Aggregate portfolio for one student. Caller must enforce JWT + Student role.
+    Uses evaluated submissions only; latest submission per assignment wins.
     """
     uid = _oid(user_id)
 
@@ -150,7 +146,6 @@ def build_portfolio(user_id: str) -> dict[str, Any]:
     if not user:
         raise ValueError('User not found')
 
-    # Evaluated submissions only; latest per assignment wins (by most recent submission)
     subs = list(
         mongo.db.submissions.find({'user_id': uid, 'status': SUBMISSION_STATUS_EVALUATED}).sort(
             'created_at', -1
@@ -200,7 +195,6 @@ def build_portfolio(user_id: str) -> dict[str, Any]:
 
     projects.sort(key=lambda p: p.get('completed_at') or '', reverse=True)
 
-    # Domain summary
     domain_counts: dict[str, int] = defaultdict(int)
     domain_scores: dict[str, list[float]] = defaultdict(list)
     for p in projects:
@@ -254,18 +248,14 @@ def build_portfolio(user_id: str) -> dict[str, Any]:
     if domains_out:
         top = domains_out[0]
         highlights.append(
-            {
-                'text': f'Strongest volume in {top["domain"]} ({top["completed_count"]} project(s)).'
-            }
+            {'text': f'Strongest volume in {top["domain"]} ({top["completed_count"]} project(s)).'}
         )
     mentor_done = sum(1 for p in projects if (p.get('mentor_feedback') or {}).get('has_feedback'))
     if mentor_done:
         highlights.append({'text': f'Mentor feedback received on {mentor_done} submission(s).'})
     if assessment_public and assessment_public.get('overall_score') is not None:
         highlights.append(
-            {
-                'text': f'Skill assessment score: {assessment_public["overall_score"]}% (MCQ).',
-            }
+            {'text': f'Skill assessment score: {assessment_public["overall_score"]}% (MCQ).'}
         )
     best = None
     for p in projects:

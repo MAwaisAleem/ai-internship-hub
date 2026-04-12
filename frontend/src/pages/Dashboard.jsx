@@ -44,9 +44,6 @@ export default function Dashboard() {
                 <Link to="/assessment">
                   <Button variant="secondary">Start Assessment</Button>
                 </Link>
-                <Link to="/tasks">
-                  <Button variant="secondary">My tasks</Button>
-                </Link>
                 <Link
                   to="/result"
                   className="text-sm text-mint-active no-underline hover:underline"
@@ -58,16 +55,9 @@ export default function Dashboard() {
           )}
 
           {user?.role === "Mentor" && (
-            <>
-              <p className="text-sm text-contentSecondary mb-2">
-                Review student work, give feedback, and track progress.
-              </p>
-              <div className="flex flex-wrap gap-3 mt-3">
-                <Link to="/mentor">
-                  <Button>Open mentor dashboard</Button>
-                </Link>
-              </div>
-            </>
+            <p className="text-sm text-contentSecondary mb-2">
+              Mentor dashboard will be implemented in the final project phase.
+            </p>
           )}
 
           {user?.role === "Administrator" && (

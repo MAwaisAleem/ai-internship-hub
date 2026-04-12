@@ -1,32 +1,29 @@
-import { useState, useEffect, useCallback } from 'react'
-import { portfolioApi } from '../api/client'
-import { getApiErrorMessage } from '../utils/apiError'
+import { useState, useEffect, useCallback } from "react";
+import { portfolioApi } from "../api/client";
+import { getApiErrorMessage } from "../utils/apiError";
 
-/**
- * Fetches GET /api/portfolio/me (Student JWT). Identity is server-side; no user id in URL.
- */
 export function usePortfolio() {
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const load = useCallback(async () => {
-    setError('')
-    setLoading(true)
+    setError("");
+    setLoading(true);
     try {
-      const res = await portfolioApi.getMe()
-      setData(res.data ?? null)
+      const res = await portfolioApi.getMe();
+      setData(res.data ?? null);
     } catch (err) {
-      setData(null)
-      setError(getApiErrorMessage(err, 'Could not load portfolio'))
+      setData(null);
+      setError(getApiErrorMessage(err, "Could not load portfolio"));
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    load()
-  }, [load])
+    load();
+  }, [load]);
 
-  return { data, loading, error, reload: load }
+  return { data, loading, error, reload: load };
 }

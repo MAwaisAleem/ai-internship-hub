@@ -51,53 +51,7 @@ export const assessmentApi = {
   getResult: () => client.get("/assessment/result"),
 };
 
-export const assignmentsApi = {
-  list: () => client.get("/assignments"),
-  get: (assignmentId) => client.get(`/assignments/${assignmentId}`),
-};
-
-/** FR3: task catalog, recommendations, claim (Student JWT) */
-export const tasksApi = {
-  getRecommended: (limit = 20) =>
-    client.get("/tasks/recommended", { params: { limit } }),
-  getMyAssignments: () => client.get("/tasks/assignments/me"),
-  claimTask: (taskId) => client.post(`/tasks/${taskId}/claim`),
-  listTasks: (params) => client.get("/tasks", { params }),
-  getTask: (taskId) => client.get(`/tasks/${taskId}`),
-};
-
-export const submissionsApi = {
-  submitWriting: (payload) => client.post("/submissions/writing", payload),
-  submitProgramming: (payload) =>
-    client.post("/submissions/programming", payload),
-  submitDesign: (assignmentId, file, studentNotes) => {
-    const fd = new FormData();
-    fd.append("assignment_id", assignmentId);
-    fd.append("file", file);
-    if (studentNotes) fd.append("student_notes", studentNotes);
-    return client.post("/submissions/design", fd);
-  },
-  get: (submissionId) => client.get(`/submissions/${submissionId}`),
-  getLatestForAssignment: (assignmentId) =>
-    client.get(`/submissions/assignment/${assignmentId}/latest`),
-};
-
-/** FR5: mentor roster, reviews, feedback (Mentor JWT) */
-export const mentorApi = {
-  getStudents: () => client.get("/mentor/students"),
-  getStudentProgress: (studentId) =>
-    client.get(`/mentor/students/${studentId}/progress`),
-  getPendingSubmissions: (limit = 50) =>
-    client.get("/mentor/submissions/pending", { params: { limit } }),
-  getSubmission: (submissionId) =>
-    client.get(`/mentor/submissions/${submissionId}`),
-  submitFeedback: (submissionId, feedback) =>
-    client.post(`/mentor/submissions/${submissionId}/feedback`, { feedback }),
-  getFeedbackHistory: (params) =>
-    client.get("/mentor/reviews/history", { params }),
-};
-
-/** FR6: student portfolio (read model) */
+/** FR6: student portfolio (GET /api/portfolio/me) */
 export const portfolioApi = {
   getMe: () => client.get("/portfolio/me"),
 };
