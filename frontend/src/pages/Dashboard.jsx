@@ -1,22 +1,22 @@
-import { Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
-import DashboardLayout from '../components/layout/DashboardLayout'
-import Card from '../components/ui/Card'
-import Button from '../components/ui/Button'
-import Badge from '../components/ui/Badge'
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import DashboardLayout from "../components/layout/DashboardLayout";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
+import Badge from "../components/ui/Badge";
 
 function getGreeting() {
-  const h = new Date().getHours()
-  if (h < 12) return 'Good Morning'
-  if (h < 17) return 'Good Afternoon'
-  return 'Good Evening'
+  const h = new Date().getHours();
+  if (h < 12) return "Good Morning";
+  if (h < 17) return "Good Afternoon";
+  return "Good Evening";
 }
 
 export default function Dashboard() {
-  const { user } = useAuth()
-  const name = user?.name || user?.email || 'User'
-  const title = `${getGreeting()}, ${name.split(' ')[0] || name}!`
-  const subtitle = "Track your progress and grow your freelancing skills."
+  const { user } = useAuth();
+  const name = user?.name || user?.email || "User";
+  const title = `${getGreeting()}, ${name.split(" ")[0] || name}!`;
+  const subtitle = "Track your progress and grow your freelancing skills.";
 
   return (
     <DashboardLayout title={title} subtitle={subtitle}>
@@ -31,29 +31,46 @@ export default function Dashboard() {
             Role: <strong>{user?.role}</strong>
           </p>
 
-          {user?.role === 'Student' && (
+          {user?.role === "Student" && (
             <>
               <p className="text-sm text-contentSecondary mb-2">
-                Take the skill assessment to get your recommended freelancing domain.
+                Take the skill assessment to get your recommended freelancing
+                domain.
               </p>
-              <div className="flex items-center gap-3 mt-3">
-                <Link to="/assessment">
-                  <Button>Start Assessment</Button>
+              <div className="flex items-center gap-3 mt-3 flex-wrap">
+                <Link to="/portfolio">
+                  <Button>My portfolio</Button>
                 </Link>
-                <Link to="/result" className="text-sm text-mint-active no-underline hover:underline">
+                <Link to="/assessment">
+                  <Button variant="secondary">Start Assessment</Button>
+                </Link>
+                <Link to="/tasks">
+                  <Button variant="secondary">My tasks</Button>
+                </Link>
+                <Link
+                  to="/result"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
                   View Last Result
                 </Link>
               </div>
             </>
           )}
 
-          {user?.role === 'Mentor' && (
-            <p className="text-sm text-contentSecondary mb-2">
-              Mentor dashboard will be implemented in the final project phase.
-            </p>
+          {user?.role === "Mentor" && (
+            <>
+              <p className="text-sm text-contentSecondary mb-2">
+                Review student work, give feedback, and track progress.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-3">
+                <Link to="/mentor">
+                  <Button>Open mentor dashboard</Button>
+                </Link>
+              </div>
+            </>
           )}
 
-          {user?.role === 'Administrator' && (
+          {user?.role === "Administrator" && (
             <p className="text-sm text-contentSecondary mb-2">
               Admin panel will be implemented in the final project phase.
             </p>
@@ -61,5 +78,5 @@ export default function Dashboard() {
         </Card>
       </section>
     </DashboardLayout>
-  )
+  );
 }
