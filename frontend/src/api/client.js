@@ -43,4 +43,13 @@ export const assessmentApi = {
   getResult: () => client.get('/assessment/result'),
 }
 
+export const tasksApi = {
+  getRecommended: (limit = 20) =>
+    client.get('/tasks/recommended', { params: { limit } }),
+  listTasks: (params) => client.get('/tasks', { params }),
+  getTask: (id) => client.get(`/tasks/${id}`),
+  claimTask: (id) => client.post(`/tasks/${id}/claim`),
+  getMyAssignments: () => client.get('/tasks/assignments/me'),
+}
+
 export default client

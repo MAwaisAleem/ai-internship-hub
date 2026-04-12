@@ -30,8 +30,10 @@ def create_app(config_class=Config):
     # Register blueprints
     from app.api.auth import auth_bp
     from app.api.assessment import assessment_bp
+    from app.api.tasks import tasks_bp
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(assessment_bp, url_prefix='/api/assessment')
+    app.register_blueprint(tasks_bp, url_prefix='/api/tasks')
 
     return app

@@ -36,9 +36,12 @@ export default function Dashboard() {
               <p className="text-sm text-contentSecondary mb-2">
                 Take the skill assessment to get your recommended freelancing domain.
               </p>
-              <div className="flex items-center gap-3 mt-3">
+              <div className="flex flex-wrap items-center gap-3 mt-3">
+                <Link to="/tasks">
+                  <Button>View Recommended Tasks</Button>
+                </Link>
                 <Link to="/assessment">
-                  <Button>Start Assessment</Button>
+                  <Button variant="secondary">Start Assessment</Button>
                 </Link>
                 <Link to="/result" className="text-sm text-mint-active no-underline hover:underline">
                   View Last Result
