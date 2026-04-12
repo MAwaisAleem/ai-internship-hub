@@ -1,40 +1,42 @@
-import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const navItems = [
-  { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
-  { path: '/mentor', label: 'Mentor', icon: '◆', roles: ['Mentor'] },
-  { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
-<<<<<<< HEAD
-  { path: '/portfolio', label: 'Portfolio', icon: '◈', roles: ['Student'] },
-=======
->>>>>>> origin/master
-  { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
-  { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
-]
+  { path: "/dashboard", label: "Dashboard", icon: "⌂" },
+  { path: "/mentor", label: "Mentor", icon: "◆", roles: ["Mentor"] },
+  { path: "/tasks", label: "Tasks", icon: "▤", roles: ["Student"] },
+  { path: "/portfolio", label: "Portfolio", icon: "◈", roles: ["Student"] },
+  { path: "/assessment", label: "Assessment", icon: "◇", roles: ["Student"] },
+  { path: "/result", label: "Result", icon: "▣", roles: ["Student"] },
+];
 
-export default function DashboardLayout({ children, title, subtitle, showSearch = true }) {
-  const { user, logout } = useAuth()
-  const location = useLocation()
-  const navigate = useNavigate()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [searchValue, setSearchValue] = useState('')
+export default function DashboardLayout({
+  children,
+  title,
+  subtitle,
+  showSearch = true,
+}) {
+  const { user, logout } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const visibleNavItems = navItems.filter(
-    (item) => !item.roles || item.roles.includes(user?.role)
-  )
+    (item) => !item.roles || item.roles.includes(user?.role),
+  );
 
   const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="flex min-h-screen">
       <aside
         className={`fixed left-0 top-0 bottom-0 z-[100] flex w-sidebar min-w-sidebar flex-col bg-mint transition-transform duration-200 ease-out max-md:-translate-x-full ${
-          sidebarOpen ? 'max-md:translate-x-0' : ''
+          sidebarOpen ? "max-md:translate-x-0" : ""
         }`}
       >
         <div className="flex items-center gap-2 border-b border-borderLight p-3">
@@ -52,27 +54,27 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
           {visibleNavItems.map((item) => {
             const isActive =
               location.pathname === item.path ||
-              (item.path === '/tasks' && location.pathname.startsWith('/tasks')) ||
-<<<<<<< HEAD
-              (item.path === '/portfolio' && location.pathname.startsWith('/portfolio')) ||
-=======
->>>>>>> origin/master
-              (item.path === '/mentor' && location.pathname.startsWith('/mentor'))
+              (item.path === "/tasks" &&
+                location.pathname.startsWith("/tasks")) ||
+              (item.path === "/portfolio" &&
+                location.pathname.startsWith("/portfolio")) ||
+              (item.path === "/mentor" &&
+                location.pathname.startsWith("/mentor"));
             return (
               <Link
                 key={`${item.path}-${item.label}`}
                 to={item.path}
                 className={`flex items-center gap-2 rounded-card px-3 py-2 text-sm font-medium no-underline transition-colors duration-150 ${
                   isActive
-                    ? 'bg-mint-active text-onMint'
-                    : 'text-contentSecondary hover:bg-white/40 hover:text-content'
+                    ? "bg-mint-active text-onMint"
+                    : "text-contentSecondary hover:bg-white/40 hover:text-content"
                 }`}
                 onClick={() => setSidebarOpen(false)}
               >
                 <span className="text-lg opacity-90">{item.icon}</span>
                 {item.label}
               </Link>
-            )
+            );
           })}
         </nav>
         <div className="border-t border-borderLight p-2">
@@ -92,7 +94,9 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
           <header className="flex flex-wrap justify-between items-start gap-3 mb-4">
             <div>
               <h1 className="text-2xl font-bold text-content mb-1">{title}</h1>
-              {subtitle && <p className="text-sm text-contentSecondary">{subtitle}</p>}
+              {subtitle && (
+                <p className="text-sm text-contentSecondary">{subtitle}</p>
+              )}
             </div>
             {showSearch && (
               <div className="flex items-center bg-card border border-borderInput rounded-card py-2 px-3 min-w-[240px] max-md:min-w-0 shadow-soft">
@@ -114,39 +118,60 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
           <div className="bg-card rounded-card shadow-card border border-borderLight p-4">
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-mint-active text-onMint flex items-center justify-center text-xl font-bold mx-auto mb-2">
-                {(user?.name || user?.email || '?').charAt(0).toUpperCase()}
+                {(user?.name || user?.email || "?").charAt(0).toUpperCase()}
               </div>
-              <div className="font-semibold text-content mb-1">{user?.name || user?.email}</div>
-              <div className="text-xs text-contentSecondary mb-2">{user?.email}</div>
+              <div className="font-semibold text-content mb-1">
+                {user?.name || user?.email}
+              </div>
+              <div className="text-xs text-contentSecondary mb-2">
+                {user?.email}
+              </div>
             </div>
           </div>
           <div className="bg-card rounded-card shadow-card border border-borderLight p-4">
-            <h3 className="text-sm font-semibold text-content mb-2">Quick actions</h3>
-            {user?.role === 'Student' && (
+            <h3 className="text-sm font-semibold text-content mb-2">
+              Quick actions
+            </h3>
+            {user?.role === "Student" && (
               <div className="flex flex-col gap-2">
-                <Link to="/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                <Link
+                  to="/tasks"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
                   Recommended Tasks
                 </Link>
-<<<<<<< HEAD
-                <Link to="/portfolio" className="text-sm text-mint-active no-underline hover:underline">
+                <Link
+                  to="/portfolio"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
                   My portfolio
                 </Link>
-=======
->>>>>>> origin/master
-                <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
+                <Link
+                  to="/assessment"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
                   Start Assessment
                 </Link>
-                <Link to="/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                <Link
+                  to="/tasks"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
                   My tasks
                 </Link>
-                <Link to="/result" className="text-sm text-mint-active no-underline hover:underline">
+                <Link
+                  to="/result"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
                   View Last Result
                 </Link>
               </div>
             )}
-            {user?.role === 'Mentor' && (
+            {user?.role === "Mentor" && (
               <div className="flex flex-col gap-2">
-                <Link to="/mentor" className="text-sm text-mint-active no-underline hover:underline">
+                <Link
+                  to="/mentor"
+                  className="text-sm text-mint-active no-underline hover:underline"
+                >
                   Mentor dashboard
                 </Link>
                 <Link
@@ -169,5 +194,5 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
         />
       )}
     </div>
-  )
+  );
 }
