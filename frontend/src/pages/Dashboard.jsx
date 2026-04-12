@@ -38,12 +38,18 @@ export default function Dashboard() {
                 domain.
               </p>
               <div className="flex items-center gap-3 mt-3 flex-wrap">
+<<<<<<< HEAD
                 <Link to="/portfolio">
                   <Button>My portfolio</Button>
                 </Link>
                 <Link to="/assessment">
                   <Button variant="secondary">Start Assessment</Button>
                 </Link>
+=======
+                <Link to="/assessment">
+                  <Button variant="secondary">Start Assessment</Button>
+                </Link>
+>>>>>>> origin/master
                 <Link to="/tasks">
                   <Button variant="secondary">My tasks</Button>
                 </Link>
