@@ -14,6 +14,14 @@ client.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
+  // Let the runtime set multipart boundary for FormData (AxiosHeaders-safe)
+  if (config.data instanceof FormData && config.headers) {
+    if (typeof config.headers.delete === 'function') {
+      config.headers.delete('Content-Type')
+    } else {
+      delete config.headers['Content-Type']
+    }
+  }
   return config
 })
 
@@ -41,6 +49,26 @@ export const assessmentApi = {
   getQuestions: () => client.get('/assessment/questions'),
   submit: (answers) => client.post('/assessment/submit', { answers }),
   getResult: () => client.get('/assessment/result'),
+}
+
+export const assignmentsApi = {
+  list: () => client.get('/assignments'),
+  get: (assignmentId) => client.get(`/assignments/${assignmentId}`),
+}
+
+export const submissionsApi = {
+  submitWriting: (payload) => client.post('/submissions/writing', payload),
+  submitProgramming: (payload) => client.post('/submissions/programming', payload),
+  submitDesign: (assignmentId, file, studentNotes) => {
+    const fd = new FormData()
+    fd.append('assignment_id', assignmentId)
+    fd.append('file', file)
+    if (studentNotes) fd.append('student_notes', studentNotes)
+    return client.post('/submissions/design', fd)
+  },
+  get: (submissionId) => client.get(`/submissions/${submissionId}`),
+  getLatestForAssignment: (assignmentId) =>
+    client.get(`/submissions/assignment/${assignmentId}/latest`),
 }
 
 export default client

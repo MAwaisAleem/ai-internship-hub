@@ -8,6 +8,8 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Assessment from './pages/Assessment'
 import Result from './pages/Result'
+import TasksPage from './pages/TasksPage'
+import TaskSubmitPage from './pages/TaskSubmitPage'
 
 function App() {
   return (
@@ -37,6 +39,22 @@ function App() {
           element={
             <ProtectedRoute roles={['Student']}>
               <Result />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tasks/:assignmentId/submit"
+          element={
+            <ProtectedRoute roles={['Student']}>
+              <TaskSubmitPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tasks"
+          element={
+            <ProtectedRoute roles={['Student']}>
+              <TasksPage />
             </ProtectedRoute>
           }
         />

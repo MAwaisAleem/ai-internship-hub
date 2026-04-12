@@ -63,6 +63,16 @@ python seed_assessment.py
 | GET    | /api/assessment/questions | Get MCQ questions (Student only)       |
 | POST   | /api/assessment/submit    | Submit answers (Student only)          |
 | GET    | /api/assessment/result    | Get latest result (Student only)       |
+| POST   | /api/submissions/writing  | Submit writing text (`assignment_id`, `text_content`) — Student; runs evaluation |
+| POST   | /api/submissions/programming | Submit Python code (`assignment_id`, `code_content`) — Student; runs test cases |
+| GET    | /api/submissions/&lt;id&gt; | Get submission (own) with evaluation   |
+| GET    | `/api/submissions/assignment/<assignment_id>/latest` | Latest submission for an assignment |
+
+**Writing evaluation (automated):** grammar-style heuristics, word count vs task `min_words`/`max_words`, keyword relevance, similarity vs optional `reference_text`. Task `task_type: "writing"`.
+
+**Programming evaluation (Python):** runs `solution.py` per test with `stdin` / compares stdout to `expected_stdout`. Task `task_type: "programming"`, `language: "python"`, optional `test_cases` array and `timeout_seconds`.
+
+**Seed tasks:** `python seed_writing_task.py` / `python seed_programming_task.py` (optional: `STUDENT_EMAIL` in `.env`).
 
 ## Docker (Full Stack)
 
@@ -81,11 +91,13 @@ docker-compose exec backend python seed_assessment.py
 ```
 ├── backend/           # Flask API
 │   ├── app/
-│   │   ├── api/       # Auth, Assessment endpoints
+│   │   ├── api/       # Auth, Assessment, Submissions
 │   │   ├── services/  # Business logic
 │   │   └── utils/     # RBAC decorators
 │   ├── run.py
 │   ├── seed_assessment.py
+│   ├── seed_writing_task.py
+│   ├── seed_programming_task.py
 │   └── requirements.txt
 ├── frontend/          # React + Vite
 │   ├── src/
