@@ -46,6 +46,13 @@ cd backend
 python seed_assessment.py
 ```
 
+**FR3 — Tasks:** seed sample tasks (run once):
+
+```bash
+cd backend
+python seed_tasks.py
+```
+
 ## Usage
 
 1. **Register** at http://localhost:5173/register (choose role: Student, Mentor, or Administrator)
@@ -63,6 +70,11 @@ python seed_assessment.py
 | GET    | /api/assessment/questions | Get MCQ questions (Student only)       |
 | POST   | /api/assessment/submit    | Submit answers (Student only)          |
 | GET    | /api/assessment/result    | Get latest result (Student only)       |
+| GET    | /api/tasks/recommended    | Ranked tasks + reasons; saves snapshot (Student) |
+| GET    | /api/tasks                | Browse open tasks (`domain`, `difficulty`, `page`, `limit`) |
+| GET    | /api/tasks/assignments/me | Current student assignments              |
+| GET    | `/api/tasks/<id>`         | Task detail (Student)                  |
+| POST   | `/api/tasks/<id>/claim`    | Start task; stores recommendation snapshot |
 
 ## Docker (Full Stack)
 
@@ -81,11 +93,12 @@ docker-compose exec backend python seed_assessment.py
 ```
 ├── backend/           # Flask API
 │   ├── app/
-│   │   ├── api/       # Auth, Assessment endpoints
+│   │   ├── api/       # Auth, Assessment, Tasks (FR3)
 │   │   ├── services/  # Business logic
 │   │   └── utils/     # RBAC decorators
 │   ├── run.py
 │   ├── seed_assessment.py
+│   ├── seed_tasks.py
 │   └── requirements.txt
 ├── frontend/          # React + Vite
 │   ├── src/
