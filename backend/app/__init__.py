@@ -37,6 +37,7 @@ def create_app(config_class=Config):
     # Register blueprints
     from app.api.auth import auth_bp
     from app.api.assessment import assessment_bp
+<<<<<<< HEAD
     from app.api.assignments import assignments_bp
     from app.api.submissions import submissions_bp
 
@@ -44,5 +45,12 @@ def create_app(config_class=Config):
     app.register_blueprint(assessment_bp, url_prefix='/api/assessment')
     app.register_blueprint(assignments_bp, url_prefix='/api/assignments')
     app.register_blueprint(submissions_bp, url_prefix='/api/submissions')
+=======
+    from app.api.tasks import tasks_bp
+
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(assessment_bp, url_prefix='/api/assessment')
+    app.register_blueprint(tasks_bp, url_prefix='/api/tasks')
+>>>>>>> origin/master
 
     return app

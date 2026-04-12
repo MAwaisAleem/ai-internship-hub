@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 
 const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
+  { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
   { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
   { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
   { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
@@ -114,6 +115,9 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
             <h3 className="text-sm font-semibold text-content mb-2">Quick actions</h3>
             {user?.role === 'Student' && (
               <div className="flex flex-col gap-2">
+                <Link to="/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  Recommended Tasks
+                </Link>
                 <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
                 </Link>

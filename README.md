@@ -46,6 +46,13 @@ cd backend
 python seed_assessment.py
 ```
 
+**FR3 — Tasks:** seed sample tasks (run once):
+
+```bash
+cd backend
+python seed_tasks.py
+```
+
 ## Usage
 
 1. **Register** at http://localhost:5173/register (choose role: Student, Mentor, or Administrator)
@@ -63,6 +70,7 @@ python seed_assessment.py
 | GET    | /api/assessment/questions | Get MCQ questions (Student only)       |
 | POST   | /api/assessment/submit    | Submit answers (Student only)          |
 | GET    | /api/assessment/result    | Get latest result (Student only)       |
+<<<<<<< HEAD
 | POST   | /api/submissions/writing  | Submit writing text (`assignment_id`, `text_content`) — Student; runs evaluation |
 | POST   | /api/submissions/programming | Submit Python code (`assignment_id`, `code_content`) — Student; runs test cases |
 | GET    | /api/submissions/&lt;id&gt; | Get submission (own) with evaluation   |
@@ -73,6 +81,13 @@ python seed_assessment.py
 **Programming evaluation (Python):** runs `solution.py` per test with `stdin` / compares stdout to `expected_stdout`. Task `task_type: "programming"`, `language: "python"`, optional `test_cases` array and `timeout_seconds`.
 
 **Seed tasks:** `python seed_writing_task.py` / `python seed_programming_task.py` (optional: `STUDENT_EMAIL` in `.env`).
+=======
+| GET    | /api/tasks/recommended    | Ranked tasks + reasons; saves snapshot (Student) |
+| GET    | /api/tasks                | Browse open tasks (`domain`, `difficulty`, `page`, `limit`) |
+| GET    | /api/tasks/assignments/me | Current student assignments              |
+| GET    | `/api/tasks/<id>`         | Task detail (Student)                  |
+| POST   | `/api/tasks/<id>/claim`    | Start task; stores recommendation snapshot |
+>>>>>>> origin/master
 
 ## Docker (Full Stack)
 
@@ -91,13 +106,21 @@ docker-compose exec backend python seed_assessment.py
 ```
 ├── backend/           # Flask API
 │   ├── app/
+<<<<<<< HEAD
 │   │   ├── api/       # Auth, Assessment, Submissions
+=======
+│   │   ├── api/       # Auth, Assessment, Tasks (FR3)
+>>>>>>> origin/master
 │   │   ├── services/  # Business logic
 │   │   └── utils/     # RBAC decorators
 │   ├── run.py
 │   ├── seed_assessment.py
+<<<<<<< HEAD
 │   ├── seed_writing_task.py
 │   ├── seed_programming_task.py
+=======
+│   ├── seed_tasks.py
+>>>>>>> origin/master
 │   └── requirements.txt
 ├── frontend/          # React + Vite
 │   ├── src/

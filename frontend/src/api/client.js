@@ -51,6 +51,7 @@ export const assessmentApi = {
   getResult: () => client.get('/assessment/result'),
 }
 
+<<<<<<< HEAD
 export const assignmentsApi = {
   list: () => client.get('/assignments'),
   get: (assignmentId) => client.get(`/assignments/${assignmentId}`),
@@ -69,6 +70,15 @@ export const submissionsApi = {
   get: (submissionId) => client.get(`/submissions/${submissionId}`),
   getLatestForAssignment: (assignmentId) =>
     client.get(`/submissions/assignment/${assignmentId}/latest`),
+=======
+export const tasksApi = {
+  getRecommended: (limit = 20) =>
+    client.get('/tasks/recommended', { params: { limit } }),
+  listTasks: (params) => client.get('/tasks', { params }),
+  getTask: (id) => client.get(`/tasks/${id}`),
+  claimTask: (id) => client.post(`/tasks/${id}/claim`),
+  getMyAssignments: () => client.get('/tasks/assignments/me'),
+>>>>>>> origin/master
 }
 
 export default client
