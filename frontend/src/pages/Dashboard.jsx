@@ -55,9 +55,16 @@ export default function Dashboard() {
           )}
 
           {user?.role === "Mentor" && (
-            <p className="text-sm text-contentSecondary mb-2">
-              Mentor dashboard will be implemented in the final project phase.
-            </p>
+            <>
+              <p className="text-sm text-contentSecondary mb-2">
+                Review student work, give feedback, and track progress.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-3">
+                <Link to="/mentor">
+                  <Button>Open mentor dashboard</Button>
+                </Link>
+              </div>
+            </>
           )}
 
           {user?.role === "Administrator" && (
