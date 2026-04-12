@@ -43,4 +43,9 @@ export const assessmentApi = {
   getResult: () => client.get('/assessment/result'),
 }
 
+/** FR6: student portfolio (GET /api/portfolio/me) */
+export const portfolioApi = {
+  getMe: () => client.get('/portfolio/me'),
+}
+
 export default client

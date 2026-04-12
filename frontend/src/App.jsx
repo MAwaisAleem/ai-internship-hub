@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Assessment from './pages/Assessment'
 import Result from './pages/Result'
+import PortfolioPage from './pages/PortfolioPage'
 
 function App() {
   return (
@@ -37,6 +38,14 @@ function App() {
           element={
             <ProtectedRoute roles={['Student']}>
               <Result />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/portfolio"
+          element={
+            <ProtectedRoute roles={['Student']}>
+              <PortfolioPage />
             </ProtectedRoute>
           }
         />

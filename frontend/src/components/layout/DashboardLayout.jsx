@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 
 const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
+  { path: '/portfolio', label: 'Portfolio', icon: '◈', roles: ['Student'] },
   { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
   { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
 ]
@@ -44,7 +45,9 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
         </div>
         <nav className="flex flex-1 flex-col gap-1 p-2">
           {visibleNavItems.map((item) => {
-            const isActive = location.pathname === item.path
+            const isActive =
+              location.pathname === item.path ||
+              (item.path === '/portfolio' && location.pathname.startsWith('/portfolio'))
             return (
               <Link
                 key={item.path}
@@ -111,6 +114,9 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
             <h3 className="text-sm font-semibold text-content mb-2">Quick actions</h3>
             {user?.role === 'Student' && (
               <div className="flex flex-col gap-2">
+                <Link to="/portfolio" className="text-sm text-mint-active no-underline hover:underline">
+                  My portfolio
+                </Link>
                 <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
                 </Link>
