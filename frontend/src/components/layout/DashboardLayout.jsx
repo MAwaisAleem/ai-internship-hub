@@ -6,7 +6,6 @@ const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
   { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
   { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
-  { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
   { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
 ]
 

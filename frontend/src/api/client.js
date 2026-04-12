@@ -1,84 +1,85 @@
-import axios from 'axios'
+import axios from "axios";
 
-const API_BASE = '/api'
+const API_BASE = "/api";
 
 const client = axios.create({
   baseURL: API_BASE,
-  headers: { 'Content-Type': 'application/json' },
+  headers: { "Content-Type": "application/json" },
   withCredentials: true,
-})
+});
 
 // Attach token from localStorage to requests
 client.interceptors.request.use((config) => {
-  const token = localStorage.getItem('access_token')
+  const token = localStorage.getItem("access_token");
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+    config.headers.Authorization = `Bearer ${token}`;
   }
   // Let the runtime set multipart boundary for FormData (AxiosHeaders-safe)
   if (config.data instanceof FormData && config.headers) {
-    if (typeof config.headers.delete === 'function') {
-      config.headers.delete('Content-Type')
+    if (typeof config.headers.delete === "function") {
+      config.headers.delete("Content-Type");
     } else {
-      delete config.headers['Content-Type']
+      delete config.headers["Content-Type"];
     }
   }
-  return config
-})
+  return config;
+});
 
 // Handle 401 - clear token and redirect to login
 client.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
-      localStorage.removeItem('access_token')
-      localStorage.removeItem('user')
-      window.location.href = '/login'
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("user");
+      window.location.href = "/login";
     }
-    return Promise.reject(err)
-  }
-)
+    return Promise.reject(err);
+  },
+);
 
 export const authApi = {
-  register: (data) => client.post('/auth/register', data),
-  login: (data) => client.post('/auth/login', data),
-  logout: () => client.post('/auth/logout'),
-  profile: () => client.get('/auth/profile'),
-}
+  register: (data) => client.post("/auth/register", data),
+  login: (data) => client.post("/auth/login", data),
+  logout: () => client.post("/auth/logout"),
+  profile: () => client.get("/auth/profile"),
+};
 
 export const assessmentApi = {
-  getQuestions: () => client.get('/assessment/questions'),
-  submit: (answers) => client.post('/assessment/submit', { answers }),
-  getResult: () => client.get('/assessment/result'),
-}
+  getQuestions: () => client.get("/assessment/questions"),
+  submit: (answers) => client.post("/assessment/submit", { answers }),
+  getResult: () => client.get("/assessment/result"),
+};
 
-<<<<<<< HEAD
 export const assignmentsApi = {
-  list: () => client.get('/assignments'),
+  list: () => client.get("/assignments"),
   get: (assignmentId) => client.get(`/assignments/${assignmentId}`),
-}
+};
+
+/** FR3: task catalog, recommendations, claim (Student JWT) */
+export const tasksApi = {
+  getRecommended: (limit = 20) =>
+    client.get("/tasks/recommended", { params: { limit } }),
+  getMyAssignments: () => client.get("/tasks/assignments/me"),
+  claimTask: (taskId) => client.post(`/tasks/${taskId}/claim`),
+  listTasks: (params) => client.get("/tasks", { params }),
+  getTask: (taskId) => client.get(`/tasks/${taskId}`),
+};
 
 export const submissionsApi = {
-  submitWriting: (payload) => client.post('/submissions/writing', payload),
-  submitProgramming: (payload) => client.post('/submissions/programming', payload),
+  submitWriting: (payload) => client.post("/submissions/writing", payload),
+  submitProgramming: (payload) =>
+    client.post("/submissions/programming", payload),
   submitDesign: (assignmentId, file, studentNotes) => {
-    const fd = new FormData()
-    fd.append('assignment_id', assignmentId)
-    fd.append('file', file)
-    if (studentNotes) fd.append('student_notes', studentNotes)
-    return client.post('/submissions/design', fd)
+    const fd = new FormData();
+    fd.append("assignment_id", assignmentId);
+    fd.append("file", file);
+    if (studentNotes) fd.append("student_notes", studentNotes);
+    return client.post("/submissions/design", fd);
   },
   get: (submissionId) => client.get(`/submissions/${submissionId}`),
   getLatestForAssignment: (assignmentId) =>
     client.get(`/submissions/assignment/${assignmentId}/latest`),
-=======
-export const tasksApi = {
-  getRecommended: (limit = 20) =>
-    client.get('/tasks/recommended', { params: { limit } }),
-  listTasks: (params) => client.get('/tasks', { params }),
-  getTask: (id) => client.get(`/tasks/${id}`),
-  claimTask: (id) => client.post(`/tasks/${id}/claim`),
-  getMyAssignments: () => client.get('/tasks/assignments/me'),
->>>>>>> origin/master
-}
+};
 
-export default client
+export default client;
