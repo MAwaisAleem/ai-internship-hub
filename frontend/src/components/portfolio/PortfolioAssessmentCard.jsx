@@ -1,9 +1,9 @@
-import Card from '../ui/Card'
+import Card from "../ui/Card";
 
 export default function PortfolioAssessmentCard({ assessment }) {
-  if (!assessment) return null
+  if (!assessment) return null;
 
-  const { overall_score, recommended_domain, recommended_domains } = assessment
+  const { overall_score, recommended_domain, recommended_domains } = assessment;
 
   return (
     <Card>
@@ -21,9 +21,9 @@ export default function PortfolioAssessmentCard({ assessment }) {
       )}
       {recommended_domains && recommended_domains.length > 0 && (
         <p className="text-sm text-contentSecondary m-0">
-          Top areas: {recommended_domains.slice(0, 5).join(', ')}
+          Top areas: {recommended_domains.slice(0, 5).join(", ")}
         </p>
       )}
     </Card>
-  )
+  );
 }

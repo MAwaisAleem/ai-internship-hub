@@ -1,4 +1,6 @@
 """Flask application factory."""
+import os
+
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -12,6 +14,11 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
     app.config['MONGO_URI'] = app.config['MONGO_URI']
+    max_mb = float(app.config.get('MAX_UPLOAD_MB') or 16)
+    app.config['MAX_CONTENT_LENGTH'] = int(max_mb * 1024 * 1024)
+    upload_folder = app.config.get('UPLOAD_FOLDER')
+    if upload_folder:
+        os.makedirs(upload_folder, exist_ok=True)
 
     # Startup log: which MongoDB connection is being used
     uri = (app.config.get('MONGODB_URI') or '').strip()

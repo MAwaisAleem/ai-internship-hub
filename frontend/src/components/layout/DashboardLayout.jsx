@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const navItems = [
-  { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
-  { path: '/portfolio', label: 'Portfolio', icon: '◈', roles: ['Student'] },
-  { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
-  { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
-]
+  { path: "/dashboard", label: "Dashboard", icon: "⌂" },
+  { path: "/portfolio", label: "Portfolio", icon: "◈", roles: ["Student"] },
+  { path: "/assessment", label: "Assessment", icon: "◇", roles: ["Student"] },
+  { path: "/result", label: "Result", icon: "▣", roles: ["Student"] },
+];
 
 export default function DashboardLayout({ children, title, subtitle, showSearch = true }) {
-  const { user, logout } = useAuth()
-  const location = useLocation()
-  const navigate = useNavigate()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [searchValue, setSearchValue] = useState('')
+  const { user, logout } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const visibleNavItems = navItems.filter(
-    (item) => !item.roles || item.roles.includes(user?.role)
-  )
+    (item) => !item.roles || item.roles.includes(user?.role),
+  );
 
   const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="flex min-h-screen">
       <aside
         className={`fixed left-0 top-0 bottom-0 z-[100] flex w-sidebar min-w-sidebar flex-col bg-mint transition-transform duration-200 ease-out max-md:-translate-x-full ${
-          sidebarOpen ? 'max-md:translate-x-0' : ''
+          sidebarOpen ? "max-md:translate-x-0" : ""
         }`}
       >
         <div className="flex items-center gap-2 border-b border-borderLight p-3">
@@ -47,22 +47,22 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
           {visibleNavItems.map((item) => {
             const isActive =
               location.pathname === item.path ||
-              (item.path === '/portfolio' && location.pathname.startsWith('/portfolio'))
+              (item.path === "/portfolio" && location.pathname.startsWith("/portfolio"));
             return (
               <Link
                 key={item.path}
                 to={item.path}
                 className={`flex items-center gap-2 rounded-card px-3 py-2 text-sm font-medium no-underline transition-colors duration-150 ${
                   isActive
-                    ? 'bg-mint-active text-onMint'
-                    : 'text-contentSecondary hover:bg-white/40 hover:text-content'
+                    ? "bg-mint-active text-onMint"
+                    : "text-contentSecondary hover:bg-white/40 hover:text-content"
                 }`}
                 onClick={() => setSidebarOpen(false)}
               >
                 <span className="text-lg opacity-90">{item.icon}</span>
                 {item.label}
               </Link>
-            )
+            );
           })}
         </nav>
         <div className="border-t border-borderLight p-2">
@@ -104,7 +104,7 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
           <div className="bg-card rounded-card shadow-card border border-borderLight p-4">
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-mint-active text-onMint flex items-center justify-center text-xl font-bold mx-auto mb-2">
-                {(user?.name || user?.email || '?').charAt(0).toUpperCase()}
+                {(user?.name || user?.email || "?").charAt(0).toUpperCase()}
               </div>
               <div className="font-semibold text-content mb-1">{user?.name || user?.email}</div>
               <div className="text-xs text-contentSecondary mb-2">{user?.email}</div>
@@ -112,7 +112,7 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
           </div>
           <div className="bg-card rounded-card shadow-card border border-borderLight p-4">
             <h3 className="text-sm font-semibold text-content mb-2">Quick actions</h3>
-            {user?.role === 'Student' && (
+            {user?.role === "Student" && (
               <div className="flex flex-col gap-2">
                 <Link to="/portfolio" className="text-sm text-mint-active no-underline hover:underline">
                   My portfolio
@@ -137,5 +137,5 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
         />
       )}
     </div>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import Card from '../ui/Card'
+import Card from "../ui/Card";
 
 export default function PortfolioProfileHero({ profile, summaryLine }) {
-  const name = profile?.name || profile?.email || 'Student'
-  const initial = (name || '?').charAt(0).toUpperCase()
+  const name = profile?.name || profile?.email || "Student";
+  const initial = (name || "?").charAt(0).toUpperCase();
 
   return (
     <Card className="border border-borderLight">
@@ -25,5 +25,5 @@ export default function PortfolioProfileHero({ profile, summaryLine }) {
         </div>
       </div>
     </Card>
-  )
+  );
 }

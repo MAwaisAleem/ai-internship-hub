@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
-import Card from '../ui/Card'
-import Button from '../ui/Button'
+import { Link } from "react-router-dom";
+import Card from "../ui/Card";
+import Button from "../ui/Button";
 
 export default function PortfolioEmptyState() {
   return (
@@ -19,5 +19,5 @@ export default function PortfolioEmptyState() {
         </Link>
       </div>
     </Card>
-  )
+  );
 }

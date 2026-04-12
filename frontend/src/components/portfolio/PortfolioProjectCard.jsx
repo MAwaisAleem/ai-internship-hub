@@ -1,36 +1,36 @@
-import Card from '../ui/Card'
-import Badge from '../ui/Badge'
+import Card from "../ui/Card";
+import Badge from "../ui/Badge";
 
 function formatScore(value) {
-  if (value === null || value === undefined) return null
-  const n = Number(value)
-  if (Number.isNaN(n)) return null
-  return `${n % 1 === 0 ? n : n.toFixed(1)}/100`
+  if (value === null || value === undefined) return null;
+  const n = Number(value);
+  if (Number.isNaN(n)) return null;
+  return `${n % 1 === 0 ? n : n.toFixed(1)}/100`;
 }
 
 function ScoreBreakdown({ breakdown }) {
-  if (!breakdown || typeof breakdown !== 'object') return null
-  const entries = Object.entries(breakdown).filter(([, v]) => v != null)
-  if (entries.length === 0) return null
+  if (!breakdown || typeof breakdown !== "object") return null;
+  const entries = Object.entries(breakdown).filter(([, v]) => v != null);
+  if (entries.length === 0) return null;
 
   return (
     <ul className="mt-2 space-y-1 text-xs text-contentSecondary m-0 pl-4 list-disc">
       {entries.map(([k, v]) => (
         <li key={k}>
-          <span className="capitalize">{k.replace(/_/g, ' ')}:</span>{' '}
-          {typeof v === 'number' ? (v % 1 === 0 ? v : v.toFixed(1)) : String(v)}
+          <span className="capitalize">{k.replace(/_/g, " ")}:</span>{" "}
+          {typeof v === "number" ? (v % 1 === 0 ? v : v.toFixed(1)) : String(v)}
         </li>
       ))}
     </ul>
-  )
+  );
 }
 
 export default function PortfolioProjectCard({ project }) {
-  const { task, evaluation, mentor_feedback, completed_at } = project
-  const title = task?.title || 'Project'
-  const domain = task?.domain
-  const tt = (task?.task_type || '').toLowerCase()
-  const scoreLabel = evaluation ? formatScore(evaluation.overall_score) : null
+  const { task, evaluation, mentor_feedback, completed_at } = project;
+  const title = task?.title || "Project";
+  const domain = task?.domain;
+  const tt = (task?.task_type || "").toLowerCase();
+  const scoreLabel = evaluation ? formatScore(evaluation.overall_score) : null;
 
   return (
     <Card>
@@ -107,5 +107,5 @@ export default function PortfolioProjectCard({ project }) {
         <p className="text-xs text-contentMuted m-0 italic">No mentor feedback for this submission yet.</p>
       )}
     </Card>
-  )
+  );
 }

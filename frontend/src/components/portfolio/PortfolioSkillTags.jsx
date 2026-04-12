@@ -1,8 +1,8 @@
-import Card from '../ui/Card'
-import Badge from '../ui/Badge'
+import Card from "../ui/Card";
+import Badge from "../ui/Badge";
 
 export default function PortfolioSkillTags({ tags }) {
-  if (!tags || tags.length === 0) return null
+  if (!tags || tags.length === 0) return null;
 
   return (
     <Card>
@@ -16,5 +16,5 @@ export default function PortfolioSkillTags({ tags }) {
         ))}
       </div>
     </Card>
-  )
+  );
 }

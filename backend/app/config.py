@@ -2,6 +2,8 @@
 import os
 from datetime import timedelta
 
+_backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 
 class Config:
     """Base configuration."""
@@ -15,3 +17,6 @@ class Config:
     JWT_COOKIE_SECURE = False  # True in production with HTTPS
     JWT_COOKIE_CSRF_PROTECT = False  # Simplify for prototype
     CORS_ORIGINS = os.environ.get('CORS_ORIGINS', 'http://localhost:5173').split(',')
+    # Design / file uploads (relative to backend working directory)
+    UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER') or os.path.join(_backend_dir, 'uploads')
+    MAX_UPLOAD_MB = float(os.environ.get('MAX_UPLOAD_MB', '16'))
