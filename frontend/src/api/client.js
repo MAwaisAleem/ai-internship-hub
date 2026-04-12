@@ -97,4 +97,12 @@ export const mentorApi = {
     client.get("/mentor/reviews/history", { params }),
 };
 
+<<<<<<< HEAD
+/** FR6: student portfolio (read model) */
+export const portfolioApi = {
+  getMe: () => client.get("/portfolio/me"),
+};
+
+=======
+>>>>>>> origin/master
 export default client;

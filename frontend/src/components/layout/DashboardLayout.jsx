@@ -6,6 +6,10 @@ const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
   { path: '/mentor', label: 'Mentor', icon: '◆', roles: ['Mentor'] },
   { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
+<<<<<<< HEAD
+  { path: '/portfolio', label: 'Portfolio', icon: '◈', roles: ['Student'] },
+=======
+>>>>>>> origin/master
   { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
   { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
 ]
@@ -49,6 +53,10 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
             const isActive =
               location.pathname === item.path ||
               (item.path === '/tasks' && location.pathname.startsWith('/tasks')) ||
+<<<<<<< HEAD
+              (item.path === '/portfolio' && location.pathname.startsWith('/portfolio')) ||
+=======
+>>>>>>> origin/master
               (item.path === '/mentor' && location.pathname.startsWith('/mentor'))
             return (
               <Link
@@ -119,6 +127,12 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
                 <Link to="/tasks" className="text-sm text-mint-active no-underline hover:underline">
                   Recommended Tasks
                 </Link>
+<<<<<<< HEAD
+                <Link to="/portfolio" className="text-sm text-mint-active no-underline hover:underline">
+                  My portfolio
+                </Link>
+=======
+>>>>>>> origin/master
                 <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
                 </Link>
