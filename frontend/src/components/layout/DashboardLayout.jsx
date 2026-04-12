@@ -6,6 +6,7 @@ const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: '⌂' },
   { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
   { path: '/assessment', label: 'Assessment', icon: '◇', roles: ['Student'] },
+  { path: '/tasks', label: 'Tasks', icon: '▤', roles: ['Student'] },
   { path: '/result', label: 'Result', icon: '▣', roles: ['Student'] },
 ]
 
@@ -119,6 +120,9 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
                 </Link>
                 <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
+                </Link>
+                <Link to="/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  My tasks
                 </Link>
                 <Link to="/result" className="text-sm text-mint-active no-underline hover:underline">
                   View Last Result
