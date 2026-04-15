@@ -5,9 +5,37 @@ import { useAuth } from "../../context/AuthContext";
 const navItems = [
   { path: "/dashboard", label: "Dashboard", icon: "⌂" },
   { path: "/portfolio", label: "Portfolio", icon: "◈", roles: ["Student"] },
+  { path: "/tasks", label: "Tasks", icon: "▤", roles: ["Student"] },
+  { path: "/tasks/my", label: "My assignments", icon: "📋", roles: ["Student"] },
+  { path: "/analytics", label: "Analytics", icon: "📊", roles: ["Student"] },
   { path: "/assessment", label: "Assessment", icon: "◇", roles: ["Student"] },
   { path: "/result", label: "Result", icon: "▣", roles: ["Student"] },
+  { path: "/mentor", label: "Mentor dashboard", icon: "👥", roles: ["Mentor"] },
+  { path: "/mentor/analytics", label: "Analytics", icon: "📊", roles: ["Mentor"] },
+  { path: "/admin/analytics", label: "Analytics", icon: "📊", roles: ["Administrator"] },
 ];
+
+function navItemActive(pathname, itemPath) {
+  if (itemPath === "/portfolio") {
+    return pathname === itemPath || pathname.startsWith("/portfolio/");
+  }
+  if (itemPath === "/mentor/analytics") {
+    return pathname === "/mentor/analytics" || pathname.startsWith("/mentor/analytics");
+  }
+  if (itemPath === "/mentor") {
+    return pathname === "/mentor" || pathname.startsWith("/mentor/");
+  }
+  if (itemPath === "/admin/analytics") {
+    return pathname === "/admin/analytics";
+  }
+  if (itemPath === "/tasks") {
+    return pathname === "/tasks";
+  }
+  if (itemPath === "/tasks/my") {
+    return pathname === "/tasks/my" || pathname.startsWith("/tasks/");
+  }
+  return pathname === itemPath;
+}
 
 export default function DashboardLayout({ children, title, subtitle, showSearch = true }) {
   const { user, logout } = useAuth();
@@ -45,9 +73,7 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
         </div>
         <nav className="flex flex-1 flex-col gap-1 p-2">
           {visibleNavItems.map((item) => {
-            const isActive =
-              location.pathname === item.path ||
-              (item.path === "/portfolio" && location.pathname.startsWith("/portfolio"));
+            const isActive = navItemActive(location.pathname, item.path);
             return (
               <Link
                 key={item.path}
@@ -117,11 +143,37 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
                 <Link to="/portfolio" className="text-sm text-mint-active no-underline hover:underline">
                   My portfolio
                 </Link>
+                <Link to="/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  Browse tasks
+                </Link>
+                <Link to="/tasks/my" className="text-sm text-mint-active no-underline hover:underline">
+                  My assignments
+                </Link>
+                <Link to="/analytics" className="text-sm text-mint-active no-underline hover:underline">
+                  Analytics
+                </Link>
                 <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
                 </Link>
                 <Link to="/result" className="text-sm text-mint-active no-underline hover:underline">
                   View Last Result
+                </Link>
+              </div>
+            )}
+            {user?.role === "Mentor" && (
+              <div className="flex flex-col gap-2">
+                <Link to="/mentor" className="text-sm text-mint-active no-underline hover:underline">
+                  Mentor dashboard
+                </Link>
+                <Link to="/mentor/analytics" className="text-sm text-mint-active no-underline hover:underline">
+                  Analytics
+                </Link>
+              </div>
+            )}
+            {user?.role === "Administrator" && (
+              <div className="flex flex-col gap-2">
+                <Link to="/admin/analytics" className="text-sm text-mint-active no-underline hover:underline">
+                  Platform analytics
                 </Link>
               </div>
             )}

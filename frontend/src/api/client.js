@@ -56,4 +56,55 @@ export const portfolioApi = {
   getMe: () => client.get("/portfolio/me"),
 };
 
+/** FR3: student tasks */
+export const tasksApi = {
+  getRecommended: (limit = 20) =>
+    client.get("/tasks/recommended", { params: { limit } }),
+  getMyAssignments: () => client.get("/tasks/assignments/me"),
+  claimTask: (taskId) => client.post(`/tasks/${taskId}/claim`),
+};
+
+/** FR3/FR4: assignment reads */
+export const assignmentsApi = {
+  list: () => client.get("/assignments"),
+  get: (assignmentId) => client.get(`/assignments/${assignmentId}`),
+};
+
+/** FR4: submissions */
+export const submissionsApi = {
+  submitWriting: (body) => client.post("/submissions/writing", body),
+  submitProgramming: (body) => client.post("/submissions/programming", body),
+  submitDesign: (assignmentId, file, studentNotes) => {
+    const fd = new FormData();
+    fd.append("assignment_id", assignmentId);
+    fd.append("file", file);
+    if (studentNotes) fd.append("student_notes", studentNotes);
+    return client.post("/submissions/design", fd);
+  },
+  get: (submissionId) => client.get(`/submissions/${submissionId}`),
+  getLatestForAssignment: (assignmentId) =>
+    client.get(`/submissions/assignment/${assignmentId}/latest`),
+};
+
+/** FR5: mentor */
+export const mentorApi = {
+  getStudents: () => client.get("/mentor/students"),
+  getStudentProgress: (studentId) =>
+    client.get(`/mentor/students/${studentId}/progress`),
+  getPendingSubmissions: (limit = 50) =>
+    client.get("/mentor/submissions/pending", { params: { limit } }),
+  getSubmission: (submissionId) => client.get(`/mentor/submissions/${submissionId}`),
+  submitFeedback: (submissionId, feedback) =>
+    client.post(`/mentor/submissions/${submissionId}/feedback`, { feedback }),
+  getFeedbackHistory: (params = {}) =>
+    client.get("/mentor/reviews/history", { params }),
+};
+
+/** FR9: analytics dashboards */
+export const analyticsApi = {
+  getMe: () => client.get("/analytics/me"),
+  getMentor: () => client.get("/analytics/mentor"),
+  getAdminSummary: () => client.get("/analytics/admin/summary"),
+};
+
 export default client;
