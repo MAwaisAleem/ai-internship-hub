@@ -15,18 +15,10 @@ import TaskSubmitPage from "./pages/TaskSubmitPage";
 import MentorDashboard from "./pages/MentorDashboard";
 import MentorStudentDetail from "./pages/MentorStudentDetail";
 import MentorReviewPage from "./pages/MentorReviewPage";
-<<<<<<< HEAD
+import ChatbotPage from "./pages/ChatbotPage";
 import StudentAnalyticsPage from "./pages/analytics/StudentAnalyticsPage";
 import MentorAnalyticsPage from "./pages/analytics/MentorAnalyticsPage";
 import AdminAnalyticsPage from "./pages/analytics/AdminAnalyticsPage";
-=======
-import AdminOverview from "./pages/admin/AdminOverview";
-import AdminUsersPage from "./pages/admin/AdminUsersPage";
-import AdminTasksPage from "./pages/admin/AdminTasksPage";
-import AdminSubmissionsPage from "./pages/admin/AdminSubmissionsPage";
-import AdminSubmissionDetailPage from "./pages/admin/AdminSubmissionDetailPage";
-import AdminRosterPage from "./pages/admin/AdminRosterPage";
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
 
 function App() {
   return (
@@ -68,17 +60,10 @@ function App() {
           }
         />
         <Route
-<<<<<<< HEAD
           path="/tasks"
           element={
             <ProtectedRoute roles={["Student"]}>
               <Tasks />
-=======
-          path="/tasks/:assignmentId/submit"
-          element={
-            <ProtectedRoute roles={["Student"]}>
-              <TaskSubmitPage />
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
             </ProtectedRoute>
           }
         />
@@ -91,11 +76,18 @@ function App() {
           }
         />
         <Route
-<<<<<<< HEAD
           path="/tasks/:assignmentId/submit"
           element={
             <ProtectedRoute roles={["Student"]}>
               <TaskSubmitPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/chatbot"
+          element={
+            <ProtectedRoute roles={["Student"]}>
+              <ChatbotPage />
             </ProtectedRoute>
           }
         />
@@ -120,12 +112,6 @@ function App() {
           element={
             <ProtectedRoute roles={["Mentor"]}>
               <MentorStudentDetail />
-=======
-          path="/tasks"
-          element={
-            <ProtectedRoute roles={["Student"]}>
-              <Tasks />
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
             </ProtectedRoute>
           }
         />
@@ -138,81 +124,18 @@ function App() {
           }
         />
         <Route
-<<<<<<< HEAD
           path="/mentor/analytics"
           element={
             <ProtectedRoute roles={["Mentor"]}>
               <MentorAnalyticsPage />
-=======
-          path="/mentor/students/:studentId"
-          element={
-            <ProtectedRoute roles={["Mentor"]}>
-              <MentorStudentDetail />
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
             </ProtectedRoute>
           }
         />
         <Route
-<<<<<<< HEAD
           path="/admin/analytics"
           element={
             <ProtectedRoute roles={["Administrator"]}>
               <AdminAnalyticsPage />
-=======
-          path="/mentor"
-          element={
-            <ProtectedRoute roles={["Mentor"]}>
-              <MentorDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/admin" element={<Navigate to="/admin/overview" replace />} />
-        <Route
-          path="/admin/overview"
-          element={
-            <ProtectedRoute roles={["Administrator"]}>
-              <AdminOverview />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/users"
-          element={
-            <ProtectedRoute roles={["Administrator"]}>
-              <AdminUsersPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/tasks"
-          element={
-            <ProtectedRoute roles={["Administrator"]}>
-              <AdminTasksPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/submissions/:submissionId"
-          element={
-            <ProtectedRoute roles={["Administrator"]}>
-              <AdminSubmissionDetailPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/submissions"
-          element={
-            <ProtectedRoute roles={["Administrator"]}>
-              <AdminSubmissionsPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/roster"
-          element={
-            <ProtectedRoute roles={["Administrator"]}>
-              <AdminRosterPage />
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
             </ProtectedRoute>
           }
         />
