@@ -41,6 +41,12 @@ export default function Dashboard() {
                 <Link to="/portfolio">
                   <Button>My portfolio</Button>
                 </Link>
+                <Link to="/tasks">
+                  <Button variant="secondary">Browse tasks</Button>
+                </Link>
+                <Link to="/tasks/my">
+                  <Button variant="secondary">My assignments</Button>
+                </Link>
                 <Link to="/assessment">
                   <Button variant="secondary">Start Assessment</Button>
                 </Link>
@@ -55,16 +61,24 @@ export default function Dashboard() {
           )}
 
           {user?.role === "Mentor" && (
-            <p className="text-sm text-contentSecondary mb-2">
-              Mentor dashboard will be implemented in the final project phase.
-            </p>
+            <div className="flex flex-wrap items-center gap-3 mt-3">
+              <Link to="/mentor">
+                <Button>Mentor dashboard</Button>
+              </Link>
+            </div>
           )}
 
           {user?.role === "Administrator" && (
-            <p className="text-sm text-contentSecondary mb-2">
-              Admin panel will be implemented in the final project phase.
-            </p>
+            <div className="flex flex-wrap items-center gap-3 mt-3">
+              <Link to="/admin/overview">
+                <Button>Admin overview</Button>
+              </Link>
+              <Link to="/admin/users" className="text-sm text-mint-active no-underline hover:underline">
+                Users
+              </Link>
+            </div>
           )}
+
         </Card>
       </section>
     </DashboardLayout>

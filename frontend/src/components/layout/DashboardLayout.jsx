@@ -7,7 +7,34 @@ const navItems = [
   { path: "/portfolio", label: "Portfolio", icon: "◈", roles: ["Student"] },
   { path: "/assessment", label: "Assessment", icon: "◇", roles: ["Student"] },
   { path: "/result", label: "Result", icon: "▣", roles: ["Student"] },
+  { path: "/tasks", label: "Browse tasks", icon: "▤", roles: ["Student"] },
+  { path: "/tasks/my", label: "My assignments", icon: "📋", roles: ["Student"] },
+  { path: "/mentor", label: "Mentor", icon: "👥", roles: ["Mentor"] },
+  { path: "/admin/overview", label: "Admin overview", icon: "⚙", roles: ["Administrator"] },
+  { path: "/admin/users", label: "Users", icon: "👤", roles: ["Administrator"] },
+  { path: "/admin/tasks", label: "Tasks", icon: "▤", roles: ["Administrator"] },
+  { path: "/admin/submissions", label: "Submissions", icon: "📄", roles: ["Administrator"] },
+  { path: "/admin/roster", label: "Roster", icon: "🔗", roles: ["Administrator"] },
 ];
+
+function isNavActive(pathname, itemPath) {
+  if (itemPath === "/admin/overview") {
+    return pathname === "/admin/overview" || pathname === "/admin";
+  }
+  if (itemPath === "/mentor") {
+    return pathname === "/mentor" || pathname.startsWith("/mentor/");
+  }
+  if (itemPath === "/admin/submissions") {
+    return pathname === "/admin/submissions" || pathname.startsWith("/admin/submissions/");
+  }
+  if (itemPath.startsWith("/admin/")) {
+    return pathname === itemPath || pathname.startsWith(`${itemPath}/`);
+  }
+  if (itemPath === "/portfolio") {
+    return pathname === itemPath || pathname.startsWith("/portfolio/");
+  }
+  return pathname === itemPath;
+}
 
 export default function DashboardLayout({ children, title, subtitle, showSearch = true }) {
   const { user, logout } = useAuth();
@@ -45,9 +72,7 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
         </div>
         <nav className="flex flex-1 flex-col gap-1 p-2">
           {visibleNavItems.map((item) => {
-            const isActive =
-              location.pathname === item.path ||
-              (item.path === "/portfolio" && location.pathname.startsWith("/portfolio"));
+            const isActive = isNavActive(location.pathname, item.path);
             return (
               <Link
                 key={item.path}
@@ -117,11 +142,37 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
                 <Link to="/portfolio" className="text-sm text-mint-active no-underline hover:underline">
                   My portfolio
                 </Link>
+                <Link to="/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  Browse tasks
+                </Link>
+                <Link to="/tasks/my" className="text-sm text-mint-active no-underline hover:underline">
+                  My assignments
+                </Link>
                 <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
                 </Link>
                 <Link to="/result" className="text-sm text-mint-active no-underline hover:underline">
                   View Last Result
+                </Link>
+              </div>
+            )}
+            {user?.role === "Mentor" && (
+              <div className="flex flex-col gap-2">
+                <Link to="/mentor" className="text-sm text-mint-active no-underline hover:underline">
+                  Mentor dashboard
+                </Link>
+              </div>
+            )}
+            {user?.role === "Administrator" && (
+              <div className="flex flex-col gap-2">
+                <Link to="/admin/overview" className="text-sm text-mint-active no-underline hover:underline">
+                  Admin overview
+                </Link>
+                <Link to="/admin/users" className="text-sm text-mint-active no-underline hover:underline">
+                  Manage users
+                </Link>
+                <Link to="/admin/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  Manage tasks
                 </Link>
               </div>
             )}
