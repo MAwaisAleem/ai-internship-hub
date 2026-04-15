@@ -10,6 +10,7 @@ const navItems = [
   { path: "/analytics", label: "Analytics", icon: "📊", roles: ["Student"] },
   { path: "/assessment", label: "Assessment", icon: "◇", roles: ["Student"] },
   { path: "/result", label: "Result", icon: "▣", roles: ["Student"] },
+<<<<<<< HEAD
   { path: "/mentor", label: "Mentor dashboard", icon: "👥", roles: ["Mentor"] },
   { path: "/mentor/analytics", label: "Analytics", icon: "📊", roles: ["Mentor"] },
   { path: "/admin/analytics", label: "Analytics", icon: "📊", roles: ["Administrator"] },
@@ -21,10 +22,26 @@ function navItemActive(pathname, itemPath) {
   }
   if (itemPath === "/mentor/analytics") {
     return pathname === "/mentor/analytics" || pathname.startsWith("/mentor/analytics");
+=======
+  { path: "/tasks", label: "Browse tasks", icon: "▤", roles: ["Student"] },
+  { path: "/tasks/my", label: "My assignments", icon: "📋", roles: ["Student"] },
+  { path: "/mentor", label: "Mentor", icon: "👥", roles: ["Mentor"] },
+  { path: "/admin/overview", label: "Admin overview", icon: "⚙", roles: ["Administrator"] },
+  { path: "/admin/users", label: "Users", icon: "👤", roles: ["Administrator"] },
+  { path: "/admin/tasks", label: "Tasks", icon: "▤", roles: ["Administrator"] },
+  { path: "/admin/submissions", label: "Submissions", icon: "📄", roles: ["Administrator"] },
+  { path: "/admin/roster", label: "Roster", icon: "🔗", roles: ["Administrator"] },
+];
+
+function isNavActive(pathname, itemPath) {
+  if (itemPath === "/admin/overview") {
+    return pathname === "/admin/overview" || pathname === "/admin";
+>>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
   }
   if (itemPath === "/mentor") {
     return pathname === "/mentor" || pathname.startsWith("/mentor/");
   }
+<<<<<<< HEAD
   if (itemPath === "/admin/analytics") {
     return pathname === "/admin/analytics";
   }
@@ -33,6 +50,16 @@ function navItemActive(pathname, itemPath) {
   }
   if (itemPath === "/tasks/my") {
     return pathname === "/tasks/my" || pathname.startsWith("/tasks/");
+=======
+  if (itemPath === "/admin/submissions") {
+    return pathname === "/admin/submissions" || pathname.startsWith("/admin/submissions/");
+  }
+  if (itemPath.startsWith("/admin/")) {
+    return pathname === itemPath || pathname.startsWith(`${itemPath}/`);
+  }
+  if (itemPath === "/portfolio") {
+    return pathname === itemPath || pathname.startsWith("/portfolio/");
+>>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
   }
   return pathname === itemPath;
 }
@@ -73,7 +100,11 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
         </div>
         <nav className="flex flex-1 flex-col gap-1 p-2">
           {visibleNavItems.map((item) => {
+<<<<<<< HEAD
             const isActive = navItemActive(location.pathname, item.path);
+=======
+            const isActive = isNavActive(location.pathname, item.path);
+>>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
             return (
               <Link
                 key={item.path}
@@ -149,9 +180,12 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
                 <Link to="/tasks/my" className="text-sm text-mint-active no-underline hover:underline">
                   My assignments
                 </Link>
+<<<<<<< HEAD
                 <Link to="/analytics" className="text-sm text-mint-active no-underline hover:underline">
                   Analytics
                 </Link>
+=======
+>>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
                 <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
                 </Link>
@@ -165,15 +199,29 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
                 <Link to="/mentor" className="text-sm text-mint-active no-underline hover:underline">
                   Mentor dashboard
                 </Link>
+<<<<<<< HEAD
                 <Link to="/mentor/analytics" className="text-sm text-mint-active no-underline hover:underline">
                   Analytics
                 </Link>
+=======
+>>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
               </div>
             )}
             {user?.role === "Administrator" && (
               <div className="flex flex-col gap-2">
+<<<<<<< HEAD
                 <Link to="/admin/analytics" className="text-sm text-mint-active no-underline hover:underline">
                   Platform analytics
+=======
+                <Link to="/admin/overview" className="text-sm text-mint-active no-underline hover:underline">
+                  Admin overview
+                </Link>
+                <Link to="/admin/users" className="text-sm text-mint-active no-underline hover:underline">
+                  Manage users
+                </Link>
+                <Link to="/admin/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  Manage tasks
+>>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
                 </Link>
               </div>
             )}
