@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """Submission status and task type constants (aligned with FR4).
 
 Imported by submission_service, evaluation_service, portfolio, mentor, analytics.
@@ -13,22 +12,3 @@ SUBMISSION_STATUS_FAILED = "failed"
 TASK_TYPE_WRITING = "writing"
 TASK_TYPE_PROGRAMMING = "programming"
 TASK_TYPE_DESIGN = "design"
-=======
-"""Submission status and task type constants (aligned with FR4)."""
-
-
-
-SUBMISSION_STATUS_PENDING = 'pending'
-
-SUBMISSION_STATUS_EVALUATED = 'evaluated'
-
-SUBMISSION_STATUS_FAILED = 'failed'
-
-
-
-TASK_TYPE_WRITING = 'writing'
-
-TASK_TYPE_PROGRAMMING = 'programming'
-
-TASK_TYPE_DESIGN = 'design'
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b

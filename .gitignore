@@ -1,40 +1,38 @@
-<<<<<<< HEAD
 # ======================
 # Python
 # ======================
-=======
-# =========================
-# Python
-# =========================
->>>>>>> 501eff0 (Apply .gitignore and clean unwanted files)
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-<<<<<<< HEAD
+venv/
 
 # ======================
 # Environment variables
 # ======================
 .env
+.env.*
 backend/.env
 frontend/.env
+*.sqlite3
 
 # ======================
 # Node / React
 # ======================
-frontend/node_modules/
 node_modules/
-
-# ======================
-# Build / Dist
-# ======================
-frontend/dist/
+frontend/node_modules/
 dist/
+frontend/dist/
+build/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # ======================
 # Logs
 # ======================
+logs/
 *.log
 
 # ======================
@@ -42,39 +40,9 @@ dist/
 # ======================
 .DS_Store
 Thumbs.db
-=======
-.env
-venv/
-.env.*
-*.sqlite3
 
-# =========================
-# Node / React
-# =========================
-node_modules/
-dist/
-build/
-.vite/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# =========================
-# OS Files
-# =========================
-.DS_Store
-Thumbs.db
-
-# =========================
+# ======================
 # IDE / Editor
-# =========================
+# ======================
 .vscode/
 .idea/
-
-# =========================
-# Logs
-# =========================
-logs/
-*.log
-
->>>>>>> 501eff0 (Apply .gitignore and clean unwanted files)

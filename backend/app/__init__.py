@@ -38,27 +38,21 @@ def create_app(config_class=Config):
     from app.api.auth import auth_bp
     from app.api.assessment import assessment_bp
     from app.api.portfolio import portfolio_bp
-<<<<<<< HEAD
     from app.api.analytics import analytics_bp
-=======
-    from app.api.admin import admin_bp
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
     from app.api.tasks import tasks_bp
     from app.api.assignments import assignments_bp
     from app.api.submissions import submissions_bp
     from app.api.mentor import mentor_bp
+    from app.api.admin import admin_bp
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(assessment_bp, url_prefix='/api/assessment')
     app.register_blueprint(portfolio_bp, url_prefix='/api/portfolio')
-<<<<<<< HEAD
     app.register_blueprint(analytics_bp, url_prefix='/api/analytics')
-=======
-    app.register_blueprint(admin_bp, url_prefix='/api/admin')
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
     app.register_blueprint(tasks_bp, url_prefix='/api/tasks')
     app.register_blueprint(assignments_bp, url_prefix='/api/assignments')
     app.register_blueprint(submissions_bp, url_prefix='/api/submissions')
     app.register_blueprint(mentor_bp, url_prefix='/api/mentor')
+    app.register_blueprint(admin_bp, url_prefix='/api/admin')
 
     return app

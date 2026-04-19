@@ -56,11 +56,7 @@ export const portfolioApi = {
   getMe: () => client.get("/portfolio/me"),
 };
 
-<<<<<<< HEAD
 /** FR3: student tasks */
-=======
-/** FR3: student task catalog & claim */
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
 export const tasksApi = {
   getRecommended: (limit = 20) =>
     client.get("/tasks/recommended", { params: { limit } }),
@@ -68,11 +64,7 @@ export const tasksApi = {
   claimTask: (taskId) => client.post(`/tasks/${taskId}/claim`),
 };
 
-<<<<<<< HEAD
 /** FR3/FR4: assignment reads */
-=======
-/** FR3/FR4: student assignments (read) */
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
 export const assignmentsApi = {
   list: () => client.get("/assignments"),
   get: (assignmentId) => client.get(`/assignments/${assignmentId}`),
@@ -97,7 +89,6 @@ export const submissionsApi = {
 /** FR5: mentor */
 export const mentorApi = {
   getStudents: () => client.get("/mentor/students"),
-<<<<<<< HEAD
   getStudentProgress: (studentId) =>
     client.get(`/mentor/students/${studentId}/progress`),
   getPendingSubmissions: (limit = 50) =>
@@ -114,15 +105,6 @@ export const analyticsApi = {
   getMe: () => client.get("/analytics/me"),
   getMentor: () => client.get("/analytics/mentor"),
   getAdminSummary: () => client.get("/analytics/admin/summary"),
-=======
-  getPendingSubmissions: (limit = 50) =>
-    client.get("/mentor/submissions/pending", { params: { limit } }),
-  getFeedbackHistory: (params) => client.get("/mentor/reviews/history", { params }),
-  getStudentProgress: (studentId) =>
-    client.get(`/mentor/students/${studentId}/progress`),
-  getSubmission: (submissionId) => client.get(`/mentor/submissions/${submissionId}`),
-  submitFeedback: (submissionId, feedback) =>
-    client.post(`/mentor/submissions/${submissionId}/feedback`, { feedback }),
 };
 
 /** FR8: admin panel */
@@ -140,7 +122,6 @@ export const adminApi = {
   patchTask: (id, body) => client.patch(`/admin/tasks/${id}`, body),
   listSubmissions: (params) => client.get("/admin/submissions", { params }),
   getSubmission: (id) => client.get(`/admin/submissions/${id}`),
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
 };
 
 export default client;

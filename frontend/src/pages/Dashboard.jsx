@@ -42,7 +42,6 @@ export default function Dashboard() {
                   <Button>My portfolio</Button>
                 </Link>
                 <Link to="/tasks">
-<<<<<<< HEAD
                   <Button variant="secondary">Browse Tasks</Button>
                 </Link>
                 <Link to="/tasks/my">
@@ -50,12 +49,6 @@ export default function Dashboard() {
                 </Link>
                 <Link to="/analytics">
                   <Button variant="secondary">Analytics</Button>
-=======
-                  <Button variant="secondary">Browse tasks</Button>
-                </Link>
-                <Link to="/tasks/my">
-                  <Button variant="secondary">My assignments</Button>
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
                 </Link>
                 <Link to="/assessment">
                   <Button variant="secondary">Start Assessment</Button>
@@ -73,30 +66,18 @@ export default function Dashboard() {
           {user?.role === "Mentor" && (
             <div className="flex flex-wrap items-center gap-3 mt-3">
               <Link to="/mentor">
-<<<<<<< HEAD
                 <Button variant="secondary">Mentor dashboard</Button>
               </Link>
               <Link to="/mentor/analytics">
                 <Button variant="secondary">Mentor analytics</Button>
-=======
-                <Button>Mentor dashboard</Button>
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
               </Link>
             </div>
           )}
 
           {user?.role === "Administrator" && (
             <div className="flex flex-wrap items-center gap-3 mt-3">
-<<<<<<< HEAD
               <Link to="/admin/analytics">
                 <Button variant="secondary">Platform analytics</Button>
-=======
-              <Link to="/admin/overview">
-                <Button>Admin overview</Button>
-              </Link>
-              <Link to="/admin/users" className="text-sm text-mint-active no-underline hover:underline">
-                Users
->>>>>>> a36fdcbf362d96dd9834ae691373adf330fa6c4b
               </Link>
             </div>
           )}
