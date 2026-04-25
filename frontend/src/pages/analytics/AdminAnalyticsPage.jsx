@@ -43,7 +43,12 @@ export default function AdminAnalyticsPage() {
       showSearch={false}
     >
       <div className="flex flex-wrap gap-2 mb-2">
-        <Button type="button" variant="secondary" onClick={load} disabled={loading}>
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={load}
+          disabled={loading}
+        >
           {loading ? "Refreshing…" : "Refresh"}
         </Button>
       </div>
@@ -56,7 +61,9 @@ export default function AdminAnalyticsPage() {
 
       {loading && !data ? (
         <Card>
-          <p className="text-sm text-contentSecondary text-center m-0 py-6">Loading platform analytics…</p>
+          <p className="text-sm text-contentSecondary text-center m-0 py-6">
+            Loading platform analytics…
+          </p>
         </Card>
       ) : null}
 
@@ -74,7 +81,11 @@ export default function AdminAnalyticsPage() {
             />
             <AnalyticsStatCard
               label="System avg score"
-              value={sub?.average_evaluation_score != null ? String(sub.average_evaluation_score) : "—"}
+              value={
+                sub?.average_evaluation_score != null
+                  ? String(sub.average_evaluation_score)
+                  : "—"
+              }
               hint="All evaluated submissions"
             />
             <AnalyticsStatCard
@@ -85,20 +96,27 @@ export default function AdminAnalyticsPage() {
           </div>
 
           <Card>
-            <h3 className="text-sm font-semibold text-content m-0 mb-3">Users by role</h3>
+            <h3 className="text-sm font-semibold text-content m-0 mb-3">
+              Users by role
+            </h3>
             {usersByRole && Object.keys(usersByRole).length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {Object.entries(usersByRole).map(([role, n]) => (
                   <div
                     key={role}
-                    className="flex justify-between items-center py-2 px-3 rounded-md bg-primary border border-borderLight">
+                    className="flex justify-between items-center py-2 px-3 rounded-md bg-primary border border-borderLight"
+                  >
                     <span className="text-sm text-content">{role}</span>
-                    <span className="text-lg font-semibold text-content">{n}</span>
+                    <span className="text-lg font-semibold text-content">
+                      {n}
+                    </span>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-contentSecondary m-0">No user counts.</p>
+              <p className="text-sm text-contentSecondary m-0">
+                No user counts.
+              </p>
             )}
           </Card>
 
@@ -107,13 +125,19 @@ export default function AdminAnalyticsPage() {
               title="Task assignments by status"
               rows={assignStatus}
             />
-            <DomainPerformanceTable rows={domains} title="Domain performance (system)" />
+            <DomainPerformanceTable
+              rows={domains}
+              title="Domain performance (system)"
+            />
           </div>
 
           <Card>
-            <h3 className="text-sm font-semibold text-content m-0 mb-1">System trends</h3>
+            <h3 className="text-sm font-semibold text-content m-0 mb-1">
+              System trends
+            </h3>
             <p className="text-xs text-contentSecondary m-0">
-              Snapshot metrics only. Time-series trends can be added later with dated aggregations.
+              Snapshot metrics only. Time-series trends can be added later with
+              dated aggregations.
             </p>
           </Card>
         </>

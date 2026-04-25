@@ -44,6 +44,7 @@ def create_app(config_class=Config):
     from app.api.submissions import submissions_bp
     from app.api.mentor import mentor_bp
     from app.api.chatbot import chatbot_bp
+    from app.api.admin import admin_bp
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(assessment_bp, url_prefix='/api/assessment')
@@ -54,5 +55,6 @@ def create_app(config_class=Config):
     app.register_blueprint(submissions_bp, url_prefix='/api/submissions')
     app.register_blueprint(mentor_bp, url_prefix='/api/mentor')
     app.register_blueprint(chatbot_bp, url_prefix='/api/chatbot')
+    app.register_blueprint(admin_bp, url_prefix='/api/admin')
 
     return app

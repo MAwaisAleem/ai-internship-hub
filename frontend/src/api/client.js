@@ -115,4 +115,21 @@ export const chatbotApi = {
   getSuggestions: () => client.get("/chatbot/suggestions"),
 };
 
+/** FR8: admin panel */
+export const adminApi = {
+  getOverview: () => client.get("/admin/overview"),
+  getReportsSummary: () => client.get("/admin/reports/summary"),
+  listUsers: (params) => client.get("/admin/users", { params }),
+  getUser: (id) => client.get(`/admin/users/${id}`),
+  patchUser: (id, body) => client.patch(`/admin/users/${id}`, body),
+  listRoster: (params) => client.get("/admin/roster", { params }),
+  createRoster: (body) => client.post("/admin/roster", body),
+  patchRoster: (id, body) => client.patch(`/admin/roster/${id}`, body),
+  listTasks: (params) => client.get("/admin/tasks", { params }),
+  createTask: (body) => client.post("/admin/tasks", body),
+  patchTask: (id, body) => client.patch(`/admin/tasks/${id}`, body),
+  listSubmissions: (params) => client.get("/admin/submissions", { params }),
+  getSubmission: (id) => client.get(`/admin/submissions/${id}`),
+};
+
 export default client;
