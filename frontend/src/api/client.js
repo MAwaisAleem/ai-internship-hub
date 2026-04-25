@@ -107,6 +107,14 @@ export const analyticsApi = {
   getAdminSummary: () => client.get("/analytics/admin/summary"),
 };
 
+/** FR7: student career-guidance chatbot */
+export const chatbotApi = {
+  sendMessage: (body) => client.post("/chatbot/message", body),
+  getHistory: (sessionId, limit = 50) =>
+    client.get("/chatbot/history", { params: { session_id: sessionId, limit } }),
+  getSuggestions: () => client.get("/chatbot/suggestions"),
+};
+
 /** FR8: admin panel */
 export const adminApi = {
   getOverview: () => client.get("/admin/overview"),

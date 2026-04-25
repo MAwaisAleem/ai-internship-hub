@@ -6,28 +6,19 @@ const navItems = [
   { path: "/dashboard", label: "Dashboard", icon: "⌂" },
   { path: "/portfolio", label: "Portfolio", icon: "◈", roles: ["Student"] },
   { path: "/tasks", label: "Tasks", icon: "▤", roles: ["Student"] },
-  {
-    path: "/tasks/my",
-    label: "My assignments",
-    icon: "📋",
-    roles: ["Student"],
-  },
+  { path: "/tasks/my", label: "My assignments", icon: "📋", roles: ["Student"] },
+  { path: "/chatbot", label: "Chatbot", icon: "💬", roles: ["Student"] },
   { path: "/analytics", label: "Analytics", icon: "📊", roles: ["Student"] },
   { path: "/assessment", label: "Assessment", icon: "◇", roles: ["Student"] },
   { path: "/result", label: "Result", icon: "▣", roles: ["Student"] },
   { path: "/mentor", label: "Mentor dashboard", icon: "👥", roles: ["Mentor"] },
-  {
-    path: "/mentor/analytics",
-    label: "Analytics",
-    icon: "📊",
-    roles: ["Mentor"],
-  },
-  {
-    path: "/admin/analytics",
-    label: "Analytics",
-    icon: "📊",
-    roles: ["Administrator"],
-  },
+  { path: "/mentor/analytics", label: "Analytics", icon: "📊", roles: ["Mentor"] },
+  { path: "/admin/overview", label: "Admin overview", icon: "◉", roles: ["Administrator"] },
+  { path: "/admin/users", label: "Users", icon: "👤", roles: ["Administrator"] },
+  { path: "/admin/tasks", label: "Tasks", icon: "▤", roles: ["Administrator"] },
+  { path: "/admin/roster", label: "Roster", icon: "🔗", roles: ["Administrator"] },
+  { path: "/admin/submissions", label: "Submissions", icon: "📄", roles: ["Administrator"] },
+  { path: "/admin/analytics", label: "Analytics", icon: "📊", roles: ["Administrator"] },
 ];
 
 function navItemActive(pathname, itemPath) {
@@ -35,10 +26,7 @@ function navItemActive(pathname, itemPath) {
     return pathname === itemPath || pathname.startsWith("/portfolio/");
   }
   if (itemPath === "/mentor/analytics") {
-    return (
-      pathname === "/mentor/analytics" ||
-      pathname.startsWith("/mentor/analytics")
-    );
+    return pathname === "/mentor/analytics" || pathname.startsWith("/mentor/analytics");
   }
   if (itemPath === "/mentor") {
     return pathname === "/mentor" || pathname.startsWith("/mentor/");
@@ -46,11 +34,20 @@ function navItemActive(pathname, itemPath) {
   if (itemPath === "/admin/analytics") {
     return pathname === "/admin/analytics";
   }
+  if (itemPath === "/admin/submissions") {
+    return (
+      pathname === "/admin/submissions" ||
+      pathname.startsWith("/admin/submissions/")
+    );
+  }
   if (itemPath === "/tasks") {
     return pathname === "/tasks";
   }
   if (itemPath === "/tasks/my") {
     return pathname === "/tasks/my" || pathname.startsWith("/tasks/");
+  }
+  if (itemPath === "/chatbot") {
+    return pathname === "/chatbot";
   }
   return pathname === itemPath;
 }
@@ -189,16 +186,13 @@ export default function DashboardLayout({
                 >
                   My assignments
                 </Link>
-                <Link
-                  to="/analytics"
-                  className="text-sm text-mint-active no-underline hover:underline"
-                >
+                <Link to="/chatbot" className="text-sm text-mint-active no-underline hover:underline">
+                  Career chatbot
+                </Link>
+                <Link to="/analytics" className="text-sm text-mint-active no-underline hover:underline">
                   Analytics
                 </Link>
-                <Link
-                  to="/assessment"
-                  className="text-sm text-mint-active no-underline hover:underline"
-                >
+                <Link to="/assessment" className="text-sm text-mint-active no-underline hover:underline">
                   Start Assessment
                 </Link>
                 <Link
@@ -217,20 +211,29 @@ export default function DashboardLayout({
                 >
                   Mentor dashboard
                 </Link>
-                <Link
-                  to="/mentor/analytics"
-                  className="text-sm text-mint-active no-underline hover:underline"
-                >
+                <Link to="/mentor/analytics" className="text-sm text-mint-active no-underline hover:underline">
                   Analytics
                 </Link>
               </div>
             )}
             {user?.role === "Administrator" && (
               <div className="flex flex-col gap-2">
-                <Link
-                  to="/admin/analytics"
-                  className="text-sm text-mint-active no-underline hover:underline"
-                >
+                <Link to="/admin/overview" className="text-sm text-mint-active no-underline hover:underline">
+                  Admin overview
+                </Link>
+                <Link to="/admin/users" className="text-sm text-mint-active no-underline hover:underline">
+                  Users
+                </Link>
+                <Link to="/admin/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  Tasks
+                </Link>
+                <Link to="/admin/roster" className="text-sm text-mint-active no-underline hover:underline">
+                  Roster
+                </Link>
+                <Link to="/admin/submissions" className="text-sm text-mint-active no-underline hover:underline">
+                  Submissions
+                </Link>
+                <Link to="/admin/analytics" className="text-sm text-mint-active no-underline hover:underline">
                   Platform analytics
                 </Link>
               </div>

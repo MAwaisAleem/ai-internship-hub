@@ -1,0 +1,118 @@
+[
+  {
+    "id": "freelancing_getting_started",
+    "intent": "freelancing_guidance",
+    "tags": ["freelancing", "beginner", "clients", "profile"],
+    "keywords": ["start", "beginner", "upwork", "fiverr", "client", "gig"],
+    "title": "Start freelancing with a focused niche",
+    "tips": [
+      "Choose one clear service (for example: Python scripting, logo design, or blog writing).",
+      "Create 2-3 portfolio samples focused on that service before sending many proposals.",
+      "Use a profile headline that states your skill + result (e.g. 'Python Developer for Automation and Data Tasks')."
+    ],
+    "checklist": [
+      "Define one niche service",
+      "Prepare 2-3 proof projects",
+      "Write profile headline + short intro",
+      "Send 5 personalized proposals"
+    ],
+    "suggestions": [
+      "Help me draft my first profile headline",
+      "How should I write my first proposal?",
+      "What projects should I add to portfolio first?"
+    ]
+  },
+  {
+    "id": "proposal_structure",
+    "intent": "proposal_profile_advice",
+    "tags": ["proposal", "client", "freelancing"],
+    "keywords": ["proposal", "bid", "cover", "apply", "client"],
+    "title": "Proposal structure that gets responses",
+    "tips": [
+      "Start with the client's goal, not your biography.",
+      "Mention one relevant proof project with measurable output.",
+      "Offer a simple 2-3 step plan and expected timeline."
+    ],
+    "checklist": [
+      "Personalize first 2 lines",
+      "Include one relevant sample",
+      "Add a clear timeline",
+      "End with one question to start conversation"
+    ],
+    "suggestions": [
+      "Give me a proposal template for programming tasks",
+      "How can I improve proposal openings?",
+      "What mistakes should I avoid in proposals?"
+    ]
+  },
+  {
+    "id": "portfolio_improvement",
+    "intent": "portfolio_improvement",
+    "tags": ["portfolio", "projects", "skills", "proof"],
+    "keywords": ["portfolio", "project", "sample", "showcase"],
+    "title": "Improve portfolio quality",
+    "tips": [
+      "Each project should explain problem, approach, tools, and output.",
+      "Add screenshots/snippets and keep descriptions short and outcome-focused.",
+      "Prioritize projects aligned with your strongest assessment domain."
+    ],
+    "checklist": [
+      "Write problem → solution → result for each project",
+      "Add visuals or output evidence",
+      "Tag projects by domain/skill",
+      "Highlight one flagship project"
+    ],
+    "suggestions": [
+      "How do I rewrite project descriptions?",
+      "Which project should be my featured one?",
+      "How many projects are enough to start?"
+    ]
+  },
+  {
+    "id": "learning_path",
+    "intent": "learning_path",
+    "tags": ["learning", "roadmap", "skills", "practice"],
+    "keywords": ["learn", "roadmap", "plan", "improve", "study"],
+    "title": "4-week practical learning path",
+    "tips": [
+      "Week 1: fundamentals + one mini exercise daily.",
+      "Week 2: build one guided project.",
+      "Week 3: build one independent project and document it.",
+      "Week 4: polish portfolio + proposals and apply to small gigs."
+    ],
+    "checklist": [
+      "Set weekly output goals",
+      "Track daily practice time",
+      "Publish each project with short write-up",
+      "Review weak topics every weekend"
+    ],
+    "suggestions": [
+      "Build me a roadmap for my recommended domain",
+      "What should I practice daily for 30 minutes?",
+      "How do I balance tasks and learning?"
+    ]
+  },
+  {
+    "id": "task_help",
+    "intent": "task_help",
+    "tags": ["tasks", "submission", "deadline", "quality"],
+    "keywords": ["task", "assignment", "submission", "deadline", "review"],
+    "title": "Task completion and submission quality",
+    "tips": [
+      "Break tasks into small checkpoints: understand, build, test, polish.",
+      "Before submitting, run a short self-check against task requirements.",
+      "Use mentor feedback to create a 'mistakes to avoid' checklist."
+    ],
+    "checklist": [
+      "Re-read requirements",
+      "Validate output or rubric criteria",
+      "Fix formatting/readability issues",
+      "Submit and note lessons learned"
+    ],
+    "suggestions": [
+      "Give me a pre-submission checklist",
+      "How can I reduce repeated mistakes?",
+      "How do I improve score on next task?"
+    ]
+  }
+]
