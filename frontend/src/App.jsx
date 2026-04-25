@@ -19,6 +19,12 @@ import ChatbotPage from "./pages/ChatbotPage";
 import StudentAnalyticsPage from "./pages/analytics/StudentAnalyticsPage";
 import MentorAnalyticsPage from "./pages/analytics/MentorAnalyticsPage";
 import AdminAnalyticsPage from "./pages/analytics/AdminAnalyticsPage";
+import AdminOverview from "./pages/admin/AdminOverview";
+import AdminUsersPage from "./pages/admin/AdminUsersPage";
+import AdminTasksPage from "./pages/admin/AdminTasksPage";
+import AdminRosterPage from "./pages/admin/AdminRosterPage";
+import AdminSubmissionsPage from "./pages/admin/AdminSubmissionsPage";
+import AdminSubmissionDetailPage from "./pages/admin/AdminSubmissionDetailPage";
 
 function App() {
   return (
@@ -128,6 +134,62 @@ function App() {
           element={
             <ProtectedRoute roles={["Mentor"]}>
               <MentorAnalyticsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute roles={["Administrator"]}>
+              <Navigate to="/admin/overview" replace />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/overview"
+          element={
+            <ProtectedRoute roles={["Administrator"]}>
+              <AdminOverview />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute roles={["Administrator"]}>
+              <AdminUsersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/tasks"
+          element={
+            <ProtectedRoute roles={["Administrator"]}>
+              <AdminTasksPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/roster"
+          element={
+            <ProtectedRoute roles={["Administrator"]}>
+              <AdminRosterPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/submissions/:submissionId"
+          element={
+            <ProtectedRoute roles={["Administrator"]}>
+              <AdminSubmissionDetailPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/submissions"
+          element={
+            <ProtectedRoute roles={["Administrator"]}>
+              <AdminSubmissionsPage />
             </ProtectedRoute>
           }
         />

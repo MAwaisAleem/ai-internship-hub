@@ -79,6 +79,21 @@ export default function Dashboard() {
 
           {user?.role === "Administrator" && (
             <div className="flex flex-wrap items-center gap-3 mt-3">
+              <Link to="/admin/overview">
+                <Button variant="secondary">Admin overview</Button>
+              </Link>
+              <Link to="/admin/users">
+                <Button variant="secondary">Users</Button>
+              </Link>
+              <Link to="/admin/tasks">
+                <Button variant="secondary">Tasks</Button>
+              </Link>
+              <Link to="/admin/roster">
+                <Button variant="secondary">Roster</Button>
+              </Link>
+              <Link to="/admin/submissions">
+                <Button variant="secondary">Submissions</Button>
+              </Link>
               <Link to="/admin/analytics">
                 <Button variant="secondary">Platform analytics</Button>
               </Link>

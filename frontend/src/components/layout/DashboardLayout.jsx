@@ -13,6 +13,11 @@ const navItems = [
   { path: "/result", label: "Result", icon: "▣", roles: ["Student"] },
   { path: "/mentor", label: "Mentor dashboard", icon: "👥", roles: ["Mentor"] },
   { path: "/mentor/analytics", label: "Analytics", icon: "📊", roles: ["Mentor"] },
+  { path: "/admin/overview", label: "Admin overview", icon: "◉", roles: ["Administrator"] },
+  { path: "/admin/users", label: "Users", icon: "👤", roles: ["Administrator"] },
+  { path: "/admin/tasks", label: "Tasks", icon: "▤", roles: ["Administrator"] },
+  { path: "/admin/roster", label: "Roster", icon: "🔗", roles: ["Administrator"] },
+  { path: "/admin/submissions", label: "Submissions", icon: "📄", roles: ["Administrator"] },
   { path: "/admin/analytics", label: "Analytics", icon: "📊", roles: ["Administrator"] },
 ];
 
@@ -28,6 +33,12 @@ function navItemActive(pathname, itemPath) {
   }
   if (itemPath === "/admin/analytics") {
     return pathname === "/admin/analytics";
+  }
+  if (itemPath === "/admin/submissions") {
+    return (
+      pathname === "/admin/submissions" ||
+      pathname.startsWith("/admin/submissions/")
+    );
   }
   if (itemPath === "/tasks") {
     return pathname === "/tasks";
@@ -179,6 +190,21 @@ export default function DashboardLayout({ children, title, subtitle, showSearch 
             )}
             {user?.role === "Administrator" && (
               <div className="flex flex-col gap-2">
+                <Link to="/admin/overview" className="text-sm text-mint-active no-underline hover:underline">
+                  Admin overview
+                </Link>
+                <Link to="/admin/users" className="text-sm text-mint-active no-underline hover:underline">
+                  Users
+                </Link>
+                <Link to="/admin/tasks" className="text-sm text-mint-active no-underline hover:underline">
+                  Tasks
+                </Link>
+                <Link to="/admin/roster" className="text-sm text-mint-active no-underline hover:underline">
+                  Roster
+                </Link>
+                <Link to="/admin/submissions" className="text-sm text-mint-active no-underline hover:underline">
+                  Submissions
+                </Link>
                 <Link to="/admin/analytics" className="text-sm text-mint-active no-underline hover:underline">
                   Platform analytics
                 </Link>
